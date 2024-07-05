@@ -1,6 +1,6 @@
 User-agent: *
-Disallow: /assets/  # Disallow crawling of the /private/ directory
-Disallow: README.md  # Disallow crawling of a specific file
+Disallow: /assets/  # Disallow crawling of the /assets/ directory
+Disallow: /README.md  # Disallow crawling of a specific file
 
 # Allow everything else
 Allow: /
