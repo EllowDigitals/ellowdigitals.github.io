@@ -291,25 +291,31 @@
                 <h2 class="display-4 fw-bold text-center mb-5">Contact Us</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <form>
+                        <form target="_blank" action="https://formsubmit.co/sarwanyadav6174@gmail.com" method="POST">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" required>
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <textarea class="form-control" id="message" rows="5" name="message" required></textarea>
                             </div>
+                            <!-- Hidden fields and submit button -->
+                            <input type="hidden" name="_template" value="table" />
+                            <input type="hidden" name="_subject" value="EllowDigitals: New Submission!" />
+                            <input type="hidden" name="_captcha" value="false" />
+                            <input type="hidden" name="_next" value="assets/success.html" />
                             <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <section id="developer" class="py-5 bg-light">
             <div class="container">
