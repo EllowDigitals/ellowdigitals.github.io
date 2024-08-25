@@ -64,31 +64,59 @@
 
     <!-- Inline CSS for Design and Animation -->
     <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Basic styles */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f2f5;
             color: #333;
-            margin: 0;
-            padding: 0;
+            line-height: 1.6;
         }
 
+        /* Header styles */
         header {
             background: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
-            padding: 60px 0;
-            color: white;
+            padding: 4rem 2rem;
+            color: #fff;
             text-align: center;
         }
 
         header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
             animation: fadeInDown 1s ease-out;
         }
 
         header p.lead {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out;
+        }
+
+        /* About quote */
+        .about-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #555;
+            margin-top: 1.25rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInDown {
@@ -115,59 +143,72 @@
             }
         }
 
+        /* Section styles */
         section {
-            padding: 60px 0;
+            padding: 4rem 2rem;
         }
 
         section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
             text-align: center;
             animation: fadeIn 1.5s ease-out;
         }
 
         section p {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
+        /* Responsive images */
         #about img {
             border: 3px solid #fff;
             width: 100%;
+            height: auto;
             animation: fadeIn 1s ease-out;
         }
 
+        /* Service card styles */
         #services .p-4 {
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
         #services .p-4:hover {
             transform: translateY(-10px);
         }
 
+        /* Footer styles */
         footer {
             background: #000;
             color: #fff;
-            padding: 20px 0;
+            padding: 1rem 2rem;
             text-align: center;
         }
 
+        /* Card styles */
         .card {
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
         }
 
+        /* Circle image */
         .rounded-circle {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
+        /* Container */
         .container {
-            max-width: 1140px;
+            max-width: 100%;
+            width: 100%;
+            padding: 0 1rem;
         }
 
+        /* Button styles */
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
@@ -177,7 +218,47 @@
             background-color: #6c757d;
             border-color: #6c757d;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p.lead {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .rounded-circle {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p.lead {
+                font-size: 0.875rem;
+            }
+
+            section h2 {
+                font-size: 1.25rem;
+            }
+
+            .rounded-circle {
+                width: 60px;
+                height: 60px;
+            }
+        }
     </style>
+
 </head>
 
 <body>
