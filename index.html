@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
 
-    <!-- Preconnect to CDN -->
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Bootstrap CSS -->
@@ -37,19 +37,43 @@
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="EllowDigitals - Official Website">
 
-    <!-- Inline CSS -->
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "EllowDigitals",
+            "url": "https://ellowdigitals.netlify.app/",
+            "logo": "https://ellowdigitals.netlify.app/assets/icons/EllowDigitals.jpg",
+            "description": "EllowDigitals specializes in creating modern, responsive software, websites, and apps.",
+            "founder": {
+                "@type": "Person",
+                "name": "Sarwan Yadav"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "sarwanyadav6174@gmail.com",
+                "contactType": "Customer Support"
+            },
+            "sameAs": [
+                "https://www.instagram.com/sarwanyadav6174",
+                "https://github.com/sarwan6174"
+            ]
+        }
+    </script>
+
+    <!-- Inline CSS for Design and Animation -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f2f5;
             color: #333;
-            overflow-x: hidden;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+            background: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
             padding: 60px 0;
             color: white;
             text-align: center;
@@ -65,24 +89,6 @@
             font-size: 1.5rem;
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out;
-        }
-
-        .about-quote {
-            font-size: 1.8rem;
-            font-style: italic;
-            color: #555;
-            margin-top: 20px;
-            animation: fadeIn 2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
         }
 
         @keyframes fadeInDown {
@@ -141,7 +147,6 @@
         footer {
             background: #000;
             color: #fff;
-            /* Updated color to white */
             padding: 20px 0;
             text-align: center;
         }
@@ -196,7 +201,7 @@
                             and design."</blockquote>
                     </div>
                     <div class="col-md-6">
-                        <img src="assets/about.jpg" class="img-fluid rounded shadow-lg" alt="About Us">
+                        <img src="assets/about.jpg" class="img-fluid rounded shadow-lg" alt="About Us" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -216,7 +221,8 @@
                                     d="M15.75 13.8h-7.5a.75.75 0 0 1-.75-.75v-1.5a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-.75.75z" />
                             </svg>
                             <h3 class="fw-bold mb-3">Web Development</h3>
-                            <p class="fs-5">We create modern and responsive websites using the latest technologies.</p>
+                            <p class="fs-5">We create modern and responsive websites using the
+                                latest technologies.</p>
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
@@ -229,7 +235,8 @@
                                     d="M10.59 16.34L6.34 12l4.25-4.34 1.41 1.41L9.16 12l2.84 2.93-1.41 1.41zM13.41 7.66L17.66 12l-4.25 4.34-1.41-1.41L14.84 12l-2.84-2.93 1.41-1.41z" />
                             </svg>
                             <h3 class="fw-bold mb-3">Mobile App Development</h3>
-                            <p class="fs-5">We develop high-performance mobile apps for both iOS and Android platforms.
+                            <p class="fs-5">We develop high-performance mobile apps for both iOS
+                                and Android platforms.
                             </p>
                         </div>
                     </div>
@@ -243,7 +250,8 @@
                                     d="M10 17.5l1.09-2.23L13.5 17.5 12 14l1.5-3-2.41 1.73L10 10.5 8.91 14 7 13l2.41 1.73L10 17.5z" />
                             </svg>
                             <h3 class="fw-bold mb-3">Digital Marketing</h3>
-                            <p class="fs-5">We provide comprehensive digital marketing services to boost your online
+                            <p class="fs-5">We provide comprehensive digital marketing services
+                                to boost your online
                                 presence.</p>
                         </div>
                     </div>
@@ -257,7 +265,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm mb-4">
-                            <img src="assets/TypeBlitz.ico" class="card-img-top rounded-top" alt="TypeBlitz">
+                            <img src="assets/TypeBlitz.ico" class="card-img-top rounded-top" alt="TypeBlitz"
+                                loading="lazy">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">TypeBlitz</h5>
                                 <p class="card-text">TypeBlitz is a fast-paced typing app designed to improve your
@@ -313,7 +322,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
                         <div class="p-4 shadow-sm rounded bg-white">
-                            <img src="assets/profile.png" class="img-fluid rounded-circle mb-3" alt="Developer">
+                            <img src="assets/profile.png" class="img-fluid rounded-circle mb-3" alt="Sarwan Yadav"
+                                loading="lazy">
                             <h3 class="fw-bold">Sarwan Yadav</h3>
                             <p class="fs-5">As the sole member of EllowDigitals, I am passionate about developing
                                 innovative digital solutions that meet the needs of my clients.</p>
@@ -324,13 +334,12 @@
         </section>
     </main>
 
-    <footer style="background: #000; color: white; padding: 20px 0; text-align: center;">
+    <footer>
         <div class="container">
             <p>&copy; 2024 Sarwan Yadav. All Rights Reserved.</p>
             <p>Made with ❤️ by Sarwan Yadav, EllowDigitals Org.</p>
         </div>
     </footer>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
@@ -348,6 +357,3 @@
                 });
         }
     </script>
-</body>
-
-</html>
