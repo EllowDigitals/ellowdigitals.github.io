@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -143,6 +142,37 @@
             }
         }
 
+        /* About section styles */
+        #about {
+            padding: 50px 0;
+        }
+
+        #about .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #about img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #fff;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            #about .row {
+                text-align: center;
+            }
+
+            #about .col-md-6 {
+                margin-bottom: 20px;
+            }
+
+            #about .about-quote {
+                margin-top: 10px;
+            }
+        }
+
         /* Section styles */
         section {
             padding: 4rem 2rem;
@@ -157,14 +187,6 @@
 
         section p {
             font-size: 1rem;
-        }
-
-        /* Responsive images */
-        #about img {
-            border: 3px solid #fff;
-            width: 100%;
-            height: auto;
-            animation: fadeIn 1s ease-out;
         }
 
         /* Service card styles */
@@ -186,11 +208,79 @@
 
         /* Card styles */
         .card {
-            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .card-img-top {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-right: 20px;
+            border: 2px solid #ddd;
+        }
+
+        .card-body {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            color: #6c757d;
+            margin-bottom: 20px;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .card-img-top {
+                width: 100px;
+                height: 100px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .card-img-top {
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .card-img-top {
+                width: 120px;
+                height: 120px;
+            }
         }
 
         /* Circle image */
@@ -199,6 +289,20 @@
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .rounded-circle {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rounded-circle {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         /* Container */
@@ -218,45 +322,6 @@
             background-color: #6c757d;
             border-color: #6c757d;
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            header p.lead {
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .rounded-circle {
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            header p.lead {
-                font-size: 0.875rem;
-            }
-
-            section h2 {
-                font-size: 1.25rem;
-            }
-
-            .rounded-circle {
-                width: 60px;
-                height: 60px;
-            }
-        }
     </style>
 
 </head>
@@ -273,20 +338,23 @@
         <section id="about">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h2 class="display-4 fw-bold text-center">About Us</h2>
+                    <div class="col-md-6 text-center text-md-left">
+                        <h2 class="display-4 fw-bold">About Us</h2>
                         <p class="fs-5">EllowDigitals is a one-person organization dedicated to creating modern,
-                            responsive software, websites, and apps. With a focus on innovation and quality, we strive
+                            responsive software, websites, and apps. With a focus on innovation and quality, we
+                            strive
                             to deliver the best digital solutions for our clients.</p>
-                        <blockquote class="about-quote">"Transforming ideas into reality through cutting-edge technology
+                        <blockquote class="about-quote">"Transforming ideas into reality through cutting-edge
+                            technology
                             and design."</blockquote>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-center">
                         <img src="assets/about.jpg" class="img-fluid rounded shadow-lg" alt="About Us" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
+
 
         <section id="services" class="bg-light">
             <div class="container">
@@ -344,9 +412,10 @@
             <div class="container">
                 <h2 class="display-4 fw-bold text-center mb-5">Our Projects</h2>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm mb-4">
-                            <img src="assets/TypeBlitz.ico" class="card-img-top rounded-top" alt="TypeBlitz"
+                    <!-- Project 1: TypeBlitz -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="assets/TypeBlitz.ico" class="card-img-top rounded-start" alt="TypeBlitz"
                                 loading="lazy">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">TypeBlitz</h5>
@@ -360,9 +429,26 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Project 2: Jamal Mad Maths Website -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="assets/jamalsir.png" class="card-img-top rounded-start" alt="Jamal Mad Maths"
+                                loading="lazy">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Jamal Mad Maths</h5>
+                                <p class="card-text">Jamal Mad Maths is a responsive website designed for Er. Jamal
+                                    Ahmed Khan, allowing students and institutions to contact him for tutoring services.
+                                    Includes animations, videos, and dynamic features.</p>
+                                <a href="https://jamalmadmaths.netlify.app" class="btn btn-primary">View Website</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+
 
         <section id="contact">
             <div class="container">
@@ -438,3 +524,6 @@
                 });
         }
     </script>
+</body>
+
+</html>
