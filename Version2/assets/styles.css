@@ -56,6 +56,17 @@ body {
     margin: 0;
 }
 
+.btn:focus {
+    outline: 2px solid var(--yellow);
+    outline-offset: 2px;
+}
+
+.navbar-nav .nav-link:focus {
+    background-color: var(--yellow);
+    color: var(--white);
+}
+
+
 .navbar-nav .nav-link {
     padding: 0.75rem 1.5rem;
     font-weight: 500;
@@ -1077,7 +1088,8 @@ p {
 .tech-item p {
     font-size: 1rem;
     color: var(--gray-light-text);
-    margin-top: auto; /* Pushes text to the bottom of the box */
+    margin-top: auto;
+    /* Pushes text to the bottom of the box */
 }
 
 @media (max-width: 1199px) {
@@ -1153,7 +1165,7 @@ p {
 }
 
 .testimonial-item {
-    background: var(--gray-dark);
+    background: #fFF;
     color: var(--white);
     padding: 20px;
     border-radius: 8px;
@@ -1178,6 +1190,7 @@ p {
     color: var(--yellow);
 }
 
+/* Responsive Adjustments */
 @media (max-width: 1199px) {
     .testimonial-item {
         max-width: 700px;
@@ -1194,5 +1207,295 @@ p {
     .testimonial-item {
         max-width: 100%;
         margin-bottom: 20px;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--black);
+    text-align: center;
+}
+
+a {
+    color: var(--yellow);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Engagement Models Section */
+#engagement {
+    background-color: var(--gray-light);
+}
+
+.engagement-models {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.model {
+    flex: 1 1 calc(33.333% - 20px);
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.model h3 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.model p {
+    font-size: 1.1rem;
+    color: var(--gray-light-text);
+}
+
+.model i {
+    font-size: 2rem;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Contact Us Section */
+#contact {
+    background-color: var(--gray-light);
+}
+
+.contact-form {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--gray-dark);
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.cta-button:hover {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+/* Latest Blog Section */
+#blog {
+    background-color: var(--gray-light);
+}
+
+.blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.blog-post {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    /* Desktop: 3 columns */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.blog-post h3 {
+    margin: 0 0 10px;
+    font-size: 1.75rem;
+    color: var(--black);
+}
+
+.blog-post h3 a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.blog-post h3 a:hover {
+    text-decoration: underline;
+}
+
+.blog-post p {
+    margin: 0;
+    color: var(--gray-light-text);
+}
+
+/* Responsive Adjustments */
+
+/* For tablets and small desktops */
+@media (max-width: 1024px) {
+    .blog-post {
+        width: calc(50% - 20px);
+        /* 2 columns on tablets */
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .blog-post {
+        width: 100%;
+        /* Single column on mobile */
+    }
+}
+
+
+/* Want to Work Together? Section */
+#work-together {
+    background-color: var(--yellow);
+    color: var(--black);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#work-together .cta-button {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#work-together .cta-button:hover {
+    background-color: var(--dark-gray);
+}
+
+/* Footer */
+#site-footer {
+    background: var(--black);
+    color: var(--yellow);
+    padding: 40px 0;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+#site-footer .footer-contact {
+    margin-bottom: 20px;
+}
+
+#site-footer .footer-contact p {
+    margin: 10px 0;
+    color: var(--yellow);
+    /* Text color for contact info */
+}
+
+#site-footer .footer-label {
+    color: var(--yellow);
+    /* Color for labels (Address, Phone, Email) */
+}
+
+#site-footer .footer-text {
+    color: var(--white);
+    /* Color for contact text */
+}
+
+#site-footer .footer-contact a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+#site-footer .footer-contact a:hover {
+    text-decoration: underline;
+}
+
+#site-footer .footer-divider {
+    border-top: 1px solid var(--gray-dark);
+    margin: 20px 0;
+}
+
+#site-footer .footer-content {
+    margin-top: 20px;
+}
+
+#site-footer .footer-logo {
+    width: 20px;
+    /* Small size for logo */
+    height: auto;
+    margin: 10px 0;
+}
+
+#site-footer .footer-content p {
+    margin: 5px 0;
+    color: var(--white);
+    /* Color for footer content text */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #site-footer .footer-contact p {
+        font-size: 0.875rem;
+    }
+
+    #site-footer .footer-content p {
+        font-size: 0.75rem;
+    }
+
+    #site-footer .footer-logo {
+        width: 15px;
+        /* Even smaller size for logo on smaller screens */
     }
 }
