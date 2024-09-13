@@ -241,82 +241,68 @@ header {
     padding: 60px 0;
 }
 
+#about-us .container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .section-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--black);
-    position: relative;
-    display: inline-block;
+    margin-bottom: 40px;
     text-align: center;
-    margin-bottom: 1.5rem;
+    color: var(--dark-gray);
 }
 
-.section-title .underline::after {
+.underline {
+    position: relative;
+    display: inline-block;
+}
+
+.underline::after {
     content: "";
     position: absolute;
-    width: 50%;
-    height: 4px;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
     background-color: var(--yellow);
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    border-radius: 2px;
+    display: block;
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    color: var(--gray-light-text);
     line-height: 1.6;
-    color: var(--dark-gray);
-    margin-bottom: 1.5rem;
-}
-
-p strong {
-    color: var(--black);
-}
-
-img {
-    border: 5px solid var(--gray-dark);
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 100%;
-    height: auto;
-}
-
-@media (max-width: 1200px) {
-    .section-title {
-        font-size: 2.25rem;
-    }
-
-    p {
-        font-size: 1.1rem;
-    }
+    margin-bottom: 20px;
+    /* Added margin for spacing between paragraphs */
 }
 
 @media (max-width: 992px) {
     .section-title {
         font-size: 2rem;
     }
-
-    p {
-        font-size: 1rem;
-    }
 }
 
 @media (max-width: 768px) {
-    #about-us {
-        padding: 40px 0;
-    }
-
     .section-title {
         font-size: 1.75rem;
     }
 
     p {
-        font-size: 0.9rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.5rem;
     }
 
-    img {
-        border-width: 4px;
+    p {
+        font-size: 0.75rem;
     }
 }
 
@@ -338,7 +324,6 @@ img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 0 auto;
-    /* Center the card horizontally */
 }
 
 .card-icon {
@@ -375,6 +360,38 @@ img {
 
     .card p {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-icon {
+        font-size: 2rem;
+    }
+
+    .card h3 {
+        font-size: 1.25rem;
+    }
+
+    .card p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        padding: 20px;
+    }
+
+    .card-icon {
+        font-size: 1.75rem;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .card p {
+        font-size: 0.75rem;
     }
 }
 
@@ -617,4 +634,207 @@ img {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--gray-light-text);
+}
+
+
+/* Recent Projects Section Styles */
+#projects {
+    padding: 60px 0;
+    background-color: var(--gray-light);
+}
+
+#projects .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    /* Center align items */
+}
+
+.project-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    /* Full width on small screens */
+    max-width: 500px;
+    /* Maximum width for larger screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.project-item img {
+    width: 150px;
+    /* Fixed width */
+    height: 150px;
+    /* Fixed height */
+    border-radius: 50%;
+    /* Circular shape */
+    object-fit: cover;
+    /* Ensure proper cropping */
+    margin-bottom: 15px;
+    /* Space between image and text */
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.project-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.project-description {
+    font-size: 1rem;
+    color: var(--gray-light-text);
+    margin-bottom: 20px;
+}
+
+.client-feedback blockquote {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    border-left: 4px solid var(--yellow);
+    padding-left: 15px;
+    margin: 0;
+}
+
+.client-feedback footer {
+    font-size: 0.875rem;
+    color: var(--gray-light-text);
+    margin-top: 5px;
+}
+
+.project-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-direction: column;
+    /* Stack buttons vertically on small screens */
+    align-items: center;
+    /* Center align buttons */
+}
+
+.project-buttons .btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: inline-block;
+    color: var(--white);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--yellow);
+}
+
+.btn-secondary {
+    background-color: var(--dark-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .project-item {
+        max-width: calc(50% - 30px);
+        /* Two items per row on medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .project-item {
+        max-width: calc(50% - 30px);
+        /* Two items per row on large tablets */
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+
+    .client-feedback blockquote {
+        font-size: 0.9rem;
+    }
+
+    .project-buttons .btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-item {
+        max-width: 100%;
+        /* Full width on small tablets and phones */
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .project-description {
+        font-size: 0.875rem;
+    }
+
+    .client-feedback blockquote {
+        font-size: 0.875rem;
+    }
+
+    .project-buttons .btn {
+        font-size: 0.875rem;
+        padding: 8px 16px;
+        /* Smaller padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.125rem;
+    }
+
+    .project-description {
+        font-size: 0.75rem;
+    }
+
+    .client-feedback blockquote {
+        font-size: 0.75rem;
+    }
+
+    .project-buttons .btn {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        /* Even smaller padding for very small screens */
+    }
 }
