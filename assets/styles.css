@@ -194,7 +194,7 @@ body {
     right: 20px;
     display: none;
     /* Hidden by default */
-    background-color: yellow;
+    background-color: darkorange;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -202,9 +202,8 @@ body {
 }
 
 .scroll-to-top:hover {
-    background-color: darkorange;
+    background-color: orange;
 }
-
 
 /* Navbar */
 .navbar {
@@ -212,41 +211,73 @@ body {
     background-color: var(--white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Centers logo and nav items vertically */
+    flex-wrap: wrap;
 }
 
 .navbar-logo {
     max-height: 50px;
+    height: auto;
+    width: auto;
+    /* Ensure logo is responsive */
+    margin-right: 1rem;
+    /* Space between logo and nav links */
 }
 
+/* Responsive Logo Size */
+@media (max-width: 768px) {
+    .navbar-logo {
+        max-height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-logo {
+        max-height: 35px;
+    }
+}
+
+/* Navbar Nav */
 .navbar-nav {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.btn:focus {
-    outline: 2px solid var(--yellow);
-    outline-offset: 2px;
-}
-
-.navbar-nav .nav-link:focus {
-    background-color: var(--yellow);
-    color: var(--white);
-}
-
+/* Nav Link */
 .navbar-nav .nav-link {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.2rem;
+    /* Reduced padding for better spacing on small screens */
+    font-size: 1rem;
+    /* Base font size */
     font-weight: 500;
     color: var(--black);
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.navbar-nav .nav-link:hover {
-    background-color: var(--yellow);
-    color: var(--white);
-    border-radius: 0.25rem;
+/* Responsive Text Size */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+        /* Slightly smaller on tablets */
+        padding: 0.65rem 1rem;
+        /* Adjust spacing for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        font-size: 0.85rem;
+        /* Smaller font size for mobile */
+        padding: 0.6rem 0.8rem;
+    }
 }
 
 /* Dropdown Menu */
@@ -280,6 +311,20 @@ body {
 
 .navbar-nav>.nav-item {
     margin-left: 1rem;
+}
+
+/* Button Focus */
+.btn:focus {
+    outline: 2px solid var(--yellow);
+    outline-offset: 2px;
+}
+
+/* Nav Link Hover and Focus */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    background-color: var(--yellow);
+    color: var(--white);
+    border-radius: 0.25rem;
 }
 
 /* Header Section */
@@ -324,14 +369,14 @@ header {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.7);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
 }
 
 .header-container p {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     font-weight: 300;
-    color: white;
+    color: rgb(255, 217, 0);
 }
 
 .btn {
