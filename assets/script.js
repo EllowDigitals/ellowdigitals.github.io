@@ -35,28 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
         updateScrollProgress(); // Initialize on load
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        // Preloader and Content Elements
-        const preloader = document.getElementById("preloader");
-        const content = document.getElementById("content");
+    // Preloader and Content Elements
+    const preloader = document.getElementById("preloader");
+    const content = document.getElementById("content");
 
-        // Function to hide preloader
-        const hidePreloader = () => {
-            if (preloader && content) {
-                preloader.style.transition = "opacity 0.5s ease-out";
-                preloader.style.opacity = "0";  // Fade out
-                setTimeout(() => {
-                    preloader.style.display = "none";  // Remove from view after fade out
-                    content.style.display = "block";  // Show content
-                }, 500);  // Matches the transition duration (0.5s)
-            }
-        };
+    // Function to hide preloader
+    const hidePreloader = () => {
+        if (preloader && content) {
+            preloader.style.transition = "opacity 0.5s ease-out";
+            preloader.style.opacity = "0";  // Fade out
+            setTimeout(() => {
+                preloader.style.display = "none";  // Remove from view after fade out
+                content.style.display = "block";  // Show content
+            }, 500);  // Matches the transition duration (0.5s)
+        }
+    };
 
-        // Trigger hidePreloader after 2 seconds (or adjust timing as necessary)
-        setTimeout(hidePreloader, 2000);
-    });
-
-
+    // Trigger hidePreloader after 2 seconds (or adjust timing as necessary)
     setTimeout(hidePreloader, 2000);
 
     // Smooth Scroll Implementation
@@ -134,10 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-});
 
-// Random Video Loading with Error Handling and Optimization
-document.addEventListener("DOMContentLoaded", () => {
+    // Random Video Loading with Error Handling and Optimization
     const videos = [
         "assets/videos/bgvideo0.mp4",
         "assets/videos/bgvideo1.mp4",
