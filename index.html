@@ -31,11 +31,11 @@
     <meta name="twitter:site" content="@YourTwitterHandle">
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -47,10 +47,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="/assets/styles.css">
 </head>
 
 <body>
+    <!--  Preloader -->
+    <div id="preloader">
+        <div class="strike"></div>
+        <div class="star">
+            <div class="pixel red"></div>
+            <div class="pixel blue"></div>
+            <div class="pixel green"></div>
+            <div class="pixel yellow"></div>
+            <div class="pixel pink"></div>
+        </div>
+    </div>
+
     <!-- Scroll Progress Bar -->
     <div id="scrollProgressContainer" class="progress-container position-fixed top-0 start-0 w-100">
         <div id="scrollProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
@@ -61,7 +73,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/images/logo.jpg" alt="EllowDigitals Logo" class="navbar-logo img-fluid">
+                <img src="/assets/images/logo.jpg" alt="EllowDigitals Logo" class="navbar-logo img-fluid">
                 EllowDigitals
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -298,7 +310,7 @@
             <div class="projects-wrapper">
                 <!-- Project 1 -->
                 <div class="project-item">
-                    <img src="assets/images/project1.webp" alt="TypeBlitz Project">
+                    <img src="/assets/images/project1.webp" alt="TypeBlitz Project">
                     <div class="project-content">
                         <h3>TypeBlitz</h3>
                         <p class="project-description">TypeBlitz is an innovative typing application designed to boost
@@ -320,7 +332,7 @@
                 </div>
                 <!-- Project 2 -->
                 <div class="project-item">
-                    <img src="assets/images/project2.webp" alt="Jamal Mad Maths Project">
+                    <img src="/assets/images/project2.webp" alt="Jamal Mad Maths Project">
                     <div class="project-content">
                         <h3>Jamal Mad Maths</h3>
                         <p class="project-description">Jamal Mad Maths is a fully responsive website created for Er.
@@ -468,24 +480,35 @@
     <!-- Contact Us Section -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <form action="https://formsubmit.co/your-email@example.com" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+            <h2 class="section-title text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form action="https://formsubmit.co/sarwanyadav6174@gmail.com" method="POST" class="contact-form">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" autocomplete="name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" autocomplete="email"
+                                required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" name="message" autocomplete="off"
+                                required></textarea>
+                        </div>
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="EllowDigitals: New Submission!">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://ellowdigitals.netlify.app/assets/success.html">
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="cta-button">Send Message</button>
-            </form>
+            </div>
         </div>
     </section>
+
 
     <!-- Recent Blog Posts Section -->
     <section id="blog" class="section bg-light">
@@ -556,7 +579,7 @@
     </footer>
 
     <!-- Custom JS -->
-    <script src="assets/script.js" defer></script>
+    <script src="/assets/script.js" defer></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
