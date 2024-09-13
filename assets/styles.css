@@ -1401,28 +1401,139 @@ a:hover {
     }
 }
 
-
-/* Want to Work Together? Section */
+/* Work Together Section */
 #work-together {
-    background-color: var(--yellow);
-    color: var(--black);
+    background-color: #fcc62d;
+    /* Section background color */
+    padding: 2rem 1rem;
     text-align: center;
-    padding: 60px 20px;
 }
 
-#work-together .cta-button {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 6px;
+#work-together .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    /* Increased text size */
+    margin-bottom: 1.5rem;
+    /* Increased spacing */
+    color: #333;
+    /* Text color */
+}
+
+.contact-info-work-together {
+    margin: 1.5rem 0;
+    color: #333;
+    /* Text color */
+}
+
+.contact-info-work-together p {
+    margin: 0.5rem 0;
+    font-size: 1.125rem;
+    /* Increased text size */
+}
+
+.contact-info-work-together i {
+    margin-right: 0.5rem;
+    color: #ffffff;
+    /* Icon color */
+}
+
+.text-work-together a {
+    color: #000000;
+    /* Link color */
     text-decoration: none;
-    transition: background-color 0.3s ease;
 }
 
-#work-together .cta-button:hover {
-    background-color: var(--dark-gray);
+.text-work-together a:hover {
+    text-decoration: underline;
 }
+
+.divider {
+    margin: 2rem 0;
+    border-top: 1px solid #000000;
+    /* Divider color */
+    width: 100%;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    /* Increased text size */
+    color: #ffffff;
+    /* Text color */
+    background-color: #000000;
+    /* Button background color */
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+
+.cta-button:hover {
+    background-color: #555;
+    /* Button hover color */
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .section-title {
+        font-size: 2rem;
+        /* Adjusted text size */
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        /* Adjusted text size */
+        padding: 0.75rem 1.25rem;
+        /* Adjusted padding */
+    }
+}
+
+@media (max-width: 768px) {
+    #work-together {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        /* Adjusted text size */
+    }
+
+    .contact-info-work-together p {
+        font-size: 1rem;
+        /* Adjusted text size */
+    }
+
+    .cta-button {
+        font-size: 0.875rem;
+        /* Adjusted text size */
+        padding: 0.5rem 1rem;
+        /* Adjusted padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem;
+        /* Adjusted text size */
+    }
+
+    .contact-info-work-together p {
+        font-size: 0.875rem;
+        /* Adjusted text size */
+    }
+
+    .cta-button {
+        font-size: 0.75rem;
+        /* Adjusted text size */
+        padding: 0.5rem 1rem;
+        /* Adjusted padding */
+    }
+}
+
 
 /* Footer */
 #site-footer {
@@ -1433,47 +1544,12 @@ a:hover {
     text-align: center;
 }
 
-#site-footer .footer-contact {
-    margin-bottom: 20px;
-}
-
-#site-footer .footer-contact p {
-    margin: 10px 0;
-    color: var(--yellow);
-    /* Text color for contact info */
-}
-
-#site-footer .footer-label {
-    color: var(--yellow);
-    /* Color for labels (Address, Phone, Email) */
-}
-
-#site-footer .footer-text {
-    color: var(--white);
-    /* Color for contact text */
-}
-
-#site-footer .footer-contact a {
-    color: var(--white);
-    text-decoration: none;
-}
-
-#site-footer .footer-contact a:hover {
-    text-decoration: underline;
-}
-
-#site-footer .footer-divider {
-    border-top: 1px solid var(--gray-dark);
-    margin: 20px 0;
-}
-
 #site-footer .footer-content {
     margin-top: 20px;
 }
 
 #site-footer .footer-logo {
     width: 20px;
-    /* Small size for logo */
     height: auto;
     margin: 10px 0;
 }
@@ -1481,12 +1557,11 @@ a:hover {
 #site-footer .footer-content p {
     margin: 5px 0;
     color: var(--white);
-    /* Color for footer content text */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    #site-footer .footer-contact p {
+    #work-together .contact-info-work-together p {
         font-size: 0.875rem;
     }
 
@@ -1496,6 +1571,5 @@ a:hover {
 
     #site-footer .footer-logo {
         width: 15px;
-        /* Even smaller size for logo on smaller screens */
     }
 }
