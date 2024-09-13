@@ -2,52 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fcc62d">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fcc62d" />
     <title>EllowDigitals | Empowering Digital Transformation</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions. Boost your digital presence with us.">
-    <meta name="keywords" content="EllowDigitals, Digital Transformation, SEO, Web Development, Digital Marketing">
-    <meta name="author" content="EllowDigitals">
-    <meta name="robots" content="index, follow">
+        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions. Boost your digital presence with us." />
+    <meta name="keywords" content="EllowDigitals, Digital Transformation, SEO, Web Development, Digital Marketing" />
+    <meta name="author" content="EllowDigitals" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph (OG) for Social Media Sharing -->
-    <meta property="og:title" content="EllowDigitals | Empowering Digital Transformation">
+    <meta property="og:title" content="EllowDigitals | Empowering Digital Transformation" />
     <meta property="og:description"
-        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions.">
-    <meta property="og:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg">
-    <meta property="og:url" content="https://ellowdigitals.netlify.app">
-    <meta property="og:type" content="website">
+        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions." />
+    <meta property="og:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg" />
+    <meta property="og:url" content="https://ellowdigitals.netlify.app" />
+    <meta property="og:type" content="website" />
 
     <!-- Twitter Card for Social Media Sharing -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="EllowDigitals | Empowering Digital Transformation">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EllowDigitals | Empowering Digital Transformation" />
     <meta name="twitter:description"
-        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions.">
-    <meta name="twitter:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg">
-    <meta name="twitter:site" content="@YourTwitterHandle">
+        content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions." />
+    <meta name="twitter:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg" />
+    <meta name="twitter:site" content="@YourTwitterHandle" />
 
     <!-- Favicon -->
-    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
 
     <!-- FontAwesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
 
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 
 <body>
@@ -65,15 +65,17 @@
 
     <!-- Scroll Progress Bar -->
     <div id="scrollProgressContainer" class="progress-container position-fixed top-0 start-0 w-100">
-        <div id="scrollProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+        <div id="scrollProgress" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
             aria-valuemin="0" aria-valuemax="100"></div>
     </div>
+
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()">Top</button>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="/assets/images/logo.jpg" alt="EllowDigitals Logo" class="navbar-logo img-fluid">
+                <img src="/assets/images/logo.jpg" alt="EllowDigitals Logo" class="navbar-logo img-fluid" />
                 EllowDigitals
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -82,22 +84,42 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-we-work">How We Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Our Recent Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-we-work">How We Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Our Recent Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-lg-3 d-none d-lg-flex">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">More</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#features">Our Features</a></li>
-                            <li><a class="dropdown-item" href="#technology">Our Technology</a></li>
-                            <li><a class="dropdown-item" href="#testimonials">Testimonials</a></li>
-                            <li><a class="dropdown-item" href="#engagement">Engagement Models</a></li>
-                            <li><a class="dropdown-item" href="#work-together">Want to Work Together?</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#features">Our Features</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#technology">Our Technology</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#testimonials">Testimonials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#engagement">Engagement Models</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#work-together">Want to Work Together?</a>
+                            </li>
                             <li><a class="dropdown-item" href="#blog">Latest Blog</a></li>
                         </ul>
                     </li>
@@ -107,11 +129,21 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMobile" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">More</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMobile">
-                            <li><a class="dropdown-item" href="#features">Our Features</a></li>
-                            <li><a class="dropdown-item" href="#technology">Our Technology</a></li>
-                            <li><a class="dropdown-item" href="#testimonials">Testimonials</a></li>
-                            <li><a class="dropdown-item" href="#engagement">Engagement Models</a></li>
-                            <li><a class="dropdown-item" href="#work-together">Want to Work Together?</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#features">Our Features</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#technology">Our Technology</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#testimonials">Testimonials</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#engagement">Engagement Models</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#work-together">Want to Work Together?</a>
+                            </li>
                             <li><a class="dropdown-item" href="#blog">Latest Blog</a></li>
                         </ul>
                     </li>
@@ -124,7 +156,7 @@
     <header class="position-relative text-center text-light">
         <div class="video-background position-absolute top-0 start-0 w-100 h-100">
             <video autoplay muted loop class="w-100 h-100 object-fit-cover">
-                <source src="assets/videos/bgvideo1.mp4" type="video/mp4">
+                <source src="assets/videos/bgvideo1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -141,16 +173,26 @@
     <!-- About Us Section -->
     <section id="about-us" class="section py-5">
         <div class="container bg-white">
-            <h2 class="section-title mb-4"><span class="underline">About Us</span></h2>
+            <h2 class="section-title mb-4">
+                <span class="underline">About Us</span>
+            </h2>
             <div class="row align-items-center">
                 <div class="col-12">
-                    <p><strong>EllowDigitals</strong> is a dynamic, one-person organization specializing in creating
-                        cutting-edge software, websites, and mobile applications. We deliver responsive, modern, and
-                        high-quality digital solutions tailored to the unique needs of each client.</p>
-                    <p>As a micro-enterprise, we pride ourselves on providing personalized service through close
-                        collaboration with our clients. Our core values—innovation, quality, and customer
-                        satisfaction—drive every project. By staying ahead of technological trends, we deliver solutions
-                        that not only meet but exceed expectations, setting us apart in the digital landscape.</p>
+                    <p>
+                        <strong>EllowDigitals</strong> is a dynamic, one-person
+                        organization specializing in creating cutting-edge software,
+                        websites, and mobile applications. We deliver responsive, modern,
+                        and high-quality digital solutions tailored to the unique needs of
+                        each client.
+                    </p>
+                    <p>
+                        As a micro-enterprise, we pride ourselves on providing
+                        personalized service through close collaboration with our clients.
+                        Our core values—innovation, quality, and customer
+                        satisfaction—drive every project. By staying ahead of
+                        technological trends, we deliver solutions that not only meet but
+                        exceed expectations, setting us apart in the digital landscape.
+                    </p>
                 </div>
             </div>
         </div>
@@ -167,9 +209,12 @@
                             <i class="fas fa-bullseye fa-3x"></i>
                         </div>
                         <h3 class="card-title">Mission</h3>
-                        <p class="card-text">At EllowDigitals, our mission is to empower businesses with innovative
-                            digital solutions. We blend creativity and technology to enhance user experiences, drive
-                            growth, and improve online visibility through effective SEO and personalized service.</p>
+                        <p class="card-text">
+                            At EllowDigitals, our mission is to empower businesses with
+                            innovative digital solutions. We blend creativity and technology
+                            to enhance user experiences, drive growth, and improve online
+                            visibility through effective SEO and personalized service.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -178,10 +223,13 @@
                             <i class="fas fa-eye fa-3x"></i>
                         </div>
                         <h3 class="card-title">Vision</h3>
-                        <p class="card-text">Our vision is to be the leading provider of custom digital solutions,
-                            renowned for our excellence and creativity. We aim to set new industry standards by
-                            continuously innovating and adapting to technological changes, driving success for our
-                            clients.</p>
+                        <p class="card-text">
+                            Our vision is to be the leading provider of custom digital
+                            solutions, renowned for our excellence and creativity. We aim to
+                            set new industry standards by continuously innovating and
+                            adapting to technological changes, driving success for our
+                            clients.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -190,9 +238,12 @@
                             <i class="fas fa-lightbulb fa-3x"></i>
                         </div>
                         <h3 class="card-title">Philosophy</h3>
-                        <p class="card-text">We believe in merging creativity with technology to craft functional and
-                            inspiring solutions. Our philosophy involves pushing digital boundaries, delivering
-                            exceptional results, and providing unparalleled service and expertise to our clients.</p>
+                        <p class="card-text">
+                            We believe in merging creativity with technology to craft
+                            functional and inspiring solutions. Our philosophy involves
+                            pushing digital boundaries, delivering exceptional results, and
+                            providing unparalleled service and expertise to our clients.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -204,16 +255,26 @@
         <div class="container">
             <h2 class="section-title mb-4 text-center">Why Choose Us?</h2>
             <ul class="list-unstyled benefits-list">
-                <li><i class="fas fa-check-circle me-2"></i>Innovative Solutions: Cutting-edge digital solutions
-                    tailored to your needs.</li>
-                <li><i class="fas fa-check-circle me-2"></i>Experienced Team: Experts bringing extensive knowledge to
-                    every project.</li>
-                <li><i class="fas fa-check-circle me-2"></i>Customer-Centric Approach: Prioritizing your needs to
-                    achieve your goals.</li>
-                <li><i class="fas fa-check-circle me-2"></i>Quality Assurance: High standards and rigorous testing for
-                    the best results.</li>
-                <li><i class="fas fa-check-circle me-2"></i>Competitive Pricing: Exceptional value for money without
-                    compromising quality.</li>
+                <li>
+                    <i class="fas fa-check-circle me-2"></i>Innovative Solutions:
+                    Cutting-edge digital solutions tailored to your needs.
+                </li>
+                <li>
+                    <i class="fas fa-check-circle me-2"></i>Experienced Team: Experts
+                    bringing extensive knowledge to every project.
+                </li>
+                <li>
+                    <i class="fas fa-check-circle me-2"></i>Customer-Centric Approach:
+                    Prioritizing your needs to achieve your goals.
+                </li>
+                <li>
+                    <i class="fas fa-check-circle me-2"></i>Quality Assurance: High
+                    standards and rigorous testing for the best results.
+                </li>
+                <li>
+                    <i class="fas fa-check-circle me-2"></i>Competitive Pricing:
+                    Exceptional value for money without compromising quality.
+                </li>
             </ul>
         </div>
     </section>
@@ -227,40 +288,51 @@
                     <div class="service-item text-center">
                         <i class="fas fa-desktop fa-3x mb-3"></i>
                         <h3>Desktop Software Development</h3>
-                        <p>Robust and dependable desktop applications crafted to enhance and streamline your business
-                            operations.</p>
+                        <p>
+                            Robust and dependable desktop applications crafted to enhance
+                            and streamline your business operations.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="service-item text-center">
                         <i class="fas fa-cogs fa-3x mb-3"></i>
                         <h3>Custom Desktop Software</h3>
-                        <p>Customized software solutions designed to address your specific business needs and boost
-                            operational efficiency.</p>
+                        <p>
+                            Customized software solutions designed to address your specific
+                            business needs and boost operational efficiency.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="service-item text-center">
                         <i class="fas fa-laptop-code fa-3x mb-3"></i>
                         <h3>Website Development</h3>
-                        <p>Comprehensive website creation services, from concept to launch, to enhance your online
-                            presence with engaging and responsive designs.</p>
+                        <p>
+                            Comprehensive website creation services, from concept to launch,
+                            to enhance your online presence with engaging and responsive
+                            designs.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="service-item text-center">
                         <i class="fas fa-paint-brush fa-3x mb-3"></i>
                         <h3>Web Design</h3>
-                        <p>Elegant and user-centric web designs that combine functionality with aesthetic appeal for
-                            optimal performance.</p>
+                        <p>
+                            Elegant and user-centric web designs that combine functionality
+                            with aesthetic appeal for optimal performance.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="service-item text-center">
                         <i class="fas fa-search fa-3x mb-3"></i>
                         <h3>SEO Optimization</h3>
-                        <p>Strategic SEO services aimed at improving search engine rankings and increasing your site's
-                            visibility.</p>
+                        <p>
+                            Strategic SEO services aimed at improving search engine rankings
+                            and increasing your site's visibility.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -272,31 +344,47 @@
         <div class="container">
             <h2 class="section-title">How We Work</h2>
             <p class="section-description">
-                We employ a collaborative approach involving clear communication, meticulous planning, and iterative
-                development to ensure our solutions align perfectly with your objectives.
+                We employ a collaborative approach involving clear communication,
+                meticulous planning, and iterative development to ensure our solutions
+                align perfectly with your objectives.
             </p>
             <div class="process-approach">
                 <div class="process">
                     <h3 class="process-title">Our Process</h3>
                     <ul class="process-list">
-                        <li><i class="fas fa-bullhorn"></i> <strong>Project Initiation:</strong> Understanding your
-                            needs and goals.</li>
-                        <li><i class="fas fa-calendar-alt"></i> <strong>Planning:</strong> Creating a detailed roadmap
-                            and timeline.</li>
-                        <li><i class="fas fa-code"></i> <strong>Development:</strong> Engaging in iterative development
-                            with regular updates.</li>
-                        <li><i class="fas fa-vials"></i> <strong>Testing:</strong> Conducting thorough testing to ensure
-                            quality and functionality.</li>
-                        <li><i class="fas fa-truck"></i> <strong>Delivery:</strong> Final delivery and deployment of the
-                            solution.</li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <strong>Project Initiation:</strong> Understanding your needs
+                            and goals.
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <strong>Planning:</strong> Creating a detailed roadmap and
+                            timeline.
+                        </li>
+                        <li>
+                            <i class="fas fa-code"></i>
+                            <strong>Development:</strong> Engaging in iterative development
+                            with regular updates.
+                        </li>
+                        <li>
+                            <i class="fas fa-vials"></i>
+                            <strong>Testing:</strong> Conducting thorough testing to ensure
+                            quality and functionality.
+                        </li>
+                        <li>
+                            <i class="fas fa-truck"></i> <strong>Delivery:</strong> Final
+                            delivery and deployment of the solution.
+                        </li>
                     </ul>
                 </div>
                 <div class="approach">
                     <h3 class="approach-title">Our Approach</h3>
                     <p>
-                        Our approach is centered around seamless project management and effective client collaboration.
-                        We prioritize transparent communication, set clear milestones, and remain adaptable throughout
-                        the project lifecycle.
+                        Our approach is centered around seamless project management and
+                        effective client collaboration. We prioritize transparent
+                        communication, set clear milestones, and remain adaptable
+                        throughout the project lifecycle.
                     </p>
                 </div>
             </div>
@@ -310,16 +398,21 @@
             <div class="projects-wrapper">
                 <!-- Project 1 -->
                 <div class="project-item">
-                    <img src="/assets/images/project1.webp" alt="TypeBlitz Project">
+                    <img src="/assets/images/project1.webp" alt="TypeBlitz Project" />
                     <div class="project-content">
                         <h3>TypeBlitz</h3>
-                        <p class="project-description">TypeBlitz is an innovative typing application designed to boost
-                            typing speed and accuracy through engaging challenges and progress tracking. Ideal for users
-                            looking to improve their typing skills in a fun and effective way.</p>
+                        <p class="project-description">
+                            TypeBlitz is an innovative typing application designed to boost
+                            typing speed and accuracy through engaging challenges and
+                            progress tracking. Ideal for users looking to improve their
+                            typing skills in a fun and effective way.
+                        </p>
                         <div class="client-feedback">
                             <blockquote>
-                                <p>"Exceptional work! The team delivered beyond expectations with a sleek design and
-                                    intuitive features."</p>
+                                <p>
+                                    "Exceptional work! The team delivered beyond expectations
+                                    with a sleek design and intuitive features."
+                                </p>
                                 <footer>- Sarwan Yadav</footer>
                             </blockquote>
                         </div>
@@ -332,16 +425,21 @@
                 </div>
                 <!-- Project 2 -->
                 <div class="project-item">
-                    <img src="/assets/images/project2.webp" alt="Jamal Mad Maths Project">
+                    <img src="/assets/images/project2.webp" alt="Jamal Mad Maths Project" />
                     <div class="project-content">
                         <h3>Jamal Mad Maths</h3>
-                        <p class="project-description">Jamal Mad Maths is a fully responsive website created for Er.
-                            Jamal Ahmed Khan. It serves as a comprehensive platform for students and educational
-                            institutions to access online tutoring services and resources.</p>
+                        <p class="project-description">
+                            Jamal Mad Maths is a fully responsive website created for Er.
+                            Jamal Ahmed Khan. It serves as a comprehensive platform for
+                            students and educational institutions to access online tutoring
+                            services and resources.
+                        </p>
                         <div class="client-feedback">
                             <blockquote>
-                                <p>"Great collaboration and results. The website is user-friendly and perfectly meets
-                                    our needs."</p>
+                                <p>
+                                    "Great collaboration and results. The website is
+                                    user-friendly and perfectly meets our needs."
+                                </p>
                                 <footer>- Jamal Khan Ahmed</footer>
                             </blockquote>
                         </div>
@@ -395,8 +493,11 @@
     <section id="technology" class="section bg-light">
         <div class="container">
             <h2 class="section-title text-center">Our Technology</h2>
-            <p class="text-center">We leverage cutting-edge technologies and tools to deliver top-notch solutions. Our
-                tech stack is diverse, incorporating the latest advancements to ensure superior results.</p>
+            <p class="text-center">
+                We leverage cutting-edge technologies and tools to deliver top-notch
+                solutions. Our tech stack is diverse, incorporating the latest
+                advancements to ensure superior results.
+            </p>
             <div class="row">
                 <div class="col-md-6 mb-4 mb-md-0">
                     <div class="tech-item text-center">
@@ -409,8 +510,7 @@
                     <div class="tech-item text-center">
                         <i class="fas fa-cogs fa-3x mb-3"></i>
                         <h3>Innovations</h3>
-                        <p>Modern development practices, and scalable architectures.
-                        </p>
+                        <p>Modern development practices, and scalable architectures.</p>
                     </div>
                 </div>
             </div>
@@ -424,28 +524,36 @@
             <div class="testimonial-carousel">
                 <div class="testimonial-item">
                     <blockquote>
-                        <p>"EllowDigitals transformed our digital presence with their innovative solutions. Highly
-                            recommended!"</p>
+                        <p>
+                            "EllowDigitals transformed our digital presence with their
+                            innovative solutions. Highly recommended!"
+                        </p>
                         <footer>- Sarwan Yadav</footer>
                     </blockquote>
                 </div>
                 <div class="testimonial-item">
                     <blockquote>
-                        <p>"The team at EllowDigitals exceeded our expectations with their creative and effective
-                            solutions."</p>
+                        <p>
+                            "The team at EllowDigitals exceeded our expectations with their
+                            creative and effective solutions."
+                        </p>
                         <footer>- Jamal Ahmed Khan</footer>
                     </blockquote>
                 </div>
                 <div class="testimonial-item">
                     <blockquote>
-                        <p>"Outstanding service and exceptional results. EllowDigitals is a game-changer in the digital
-                            world."</p>
+                        <p>
+                            "Outstanding service and exceptional results. EllowDigitals is a
+                            game-changer in the digital world."
+                        </p>
                         <footer>- Priya Singh</footer>
                     </blockquote>
                 </div>
                 <div class="testimonial-item">
                     <blockquote>
-                        <p>"EllowDigitals provided us with a top-quality digital solution that perfectly met our needs."
+                        <p>
+                            "EllowDigitals provided us with a top-quality digital solution
+                            that perfectly met our needs."
                         </p>
                         <footer>- Ravi Patel</footer>
                     </blockquote>
@@ -458,12 +566,17 @@
     <section id="engagement" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Engagement Models</h2>
-            <p>We offer various engagement models including project-based and retainer models to suit different needs
-                and preferences.</p>
+            <p>
+                We offer various engagement models including project-based and
+                retainer models to suit different needs and preferences.
+            </p>
             <div class="engagement-models">
                 <div class="model">
                     <h3><i class="fas fa-project-diagram"></i> Project-Based</h3>
-                    <p>Engage with us for specific projects with a clear scope and timeline.</p>
+                    <p>
+                        Engage with us for specific projects with a clear scope and
+                        timeline.
+                    </p>
                 </div>
                 <div class="model">
                     <h3><i class="fas fa-handshake"></i> Retainer Models</h3>
@@ -483,54 +596,82 @@
             <h2 class="section-title text-center mb-5">Contact Us</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form action="https://formsubmit.co/sarwanyadav6174@gmail.com" method="POST" class="contact-form">
+                    <form id="contactForm" action="https://formsubmit.co/sarwanyadav6174@gmail.com" method="POST"
+                        class="contact-form">
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" autocomplete="name" required>
+                            <input type="text" class="form-control" id="name" name="name" autocomplete="name"
+                                required />
+                            <div class="invalid-feedback">Please enter your name.</div>
                         </div>
                         <div class="form-group mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" autocomplete="email"
-                                required>
+                                required />
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
                         </div>
                         <div class="form-group mb-3">
                             <label for="message" class="form-label">Message</label>
                             <textarea class="form-control" id="message" rows="5" name="message" autocomplete="off"
                                 required></textarea>
+                            <div class="invalid-feedback">Please enter a message.</div>
                         </div>
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_subject" value="EllowDigitals: New Submission!">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://ellowdigitals.netlify.app/assets/success.html">
-                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        <input type="hidden" name="_template" value="table" />
+                        <input type="hidden" name="_subject" value="EllowDigitals: New Submission!" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input type="hidden" name="_next"
+                            value="https://ellowdigitals.netlify.app/assets/success.html" />
+                        <button type="submit" class="btn btn-primary w-100">
+                            Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- Recent Blog Posts Section -->
     <section id="blog" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Recent Blog Posts</h2>
-            <p>Explore insights from EllowDigitals on the latest trends in digital transformation, web design, and
-                innovative marketing strategies.</p>
+            <p>
+                Explore insights from EllowDigitals on the latest trends in digital
+                transformation, web design, and innovative marketing strategies.
+            </p>
             <div class="blog-posts">
                 <article class="blog-post">
-                    <h3><a href="#">How EllowDigitals is Transforming Businesses Through Digital Innovation</a></h3>
-                    <p>Discover how EllowDigitals is empowering businesses to thrive in a digital-first world by
-                        leveraging cutting-edge technologies and strategic insights.</p>
+                    <h3>
+                        <a href="#">How EllowDigitals is Transforming Businesses Through Digital
+                            Innovation</a>
+                    </h3>
+                    <p>
+                        Discover how EllowDigitals is empowering businesses to thrive in a
+                        digital-first world by leveraging cutting-edge technologies and
+                        strategic insights.
+                    </p>
                 </article>
                 <article class="blog-post">
-                    <h3><a href="#">Crafting Custom Web Solutions: EllowDigitals' Approach to Web Design</a></h3>
-                    <p>Learn about EllowDigitals' unique approach to building engaging, responsive, and user-centric
-                        websites tailored to meet the needs of modern businesses.</p>
+                    <h3>
+                        <a href="#">Crafting Custom Web Solutions: EllowDigitals' Approach to Web
+                            Design</a>
+                    </h3>
+                    <p>
+                        Learn about EllowDigitals' unique approach to building engaging,
+                        responsive, and user-centric websites tailored to meet the needs
+                        of modern businesses.
+                    </p>
                 </article>
                 <article class="blog-post">
-                    <h3><a href="#">AI and Marketing: How EllowDigitals is Shaping the Future</a></h3>
-                    <p>Explore how EllowDigitals is integrating artificial intelligence into marketing strategies to
-                        drive growth and innovation for their clients.</p>
+                    <h3>
+                        <a href="#">AI and Marketing: How EllowDigitals is Shaping the Future</a>
+                    </h3>
+                    <p>
+                        Explore how EllowDigitals is integrating artificial intelligence
+                        into marketing strategies to drive growth and innovation for their
+                        clients.
+                    </p>
                 </article>
             </div>
         </div>
@@ -540,8 +681,10 @@
     <section id="work-together" class="section">
         <div class="container">
             <h2 class="section-title">Want to Work Together?</h2>
-            <p>Ready to start your project or have a question? Get in touch with us to discuss your needs and how we can
-                help.</p>
+            <p>
+                Ready to start your project or have a question? Get in touch with us
+                to discuss your needs and how we can help.
+            </p>
             <div class="contact-info-work-together">
                 <p>
                     <i class="fas fa-map-marker-alt"></i>
@@ -571,7 +714,7 @@
     <footer id="site-footer">
         <div class="container">
             <div class="footer-content">
-                <img src="assets/images/flag.png" alt="India Logo" class="footer-logo">
+                <img src="assets/images/flag.png" alt="India Logo" class="footer-logo" />
                 <p>&copy; 2024 EllowDigitals Enterprise. All Rights Reserved.</p>
                 <p>Made with ❤️ by EllowDigitals.</p>
             </div>
