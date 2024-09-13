@@ -273,7 +273,8 @@ header {
 }
 
 p {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    /* Increased base font size */
     color: var(--gray-light-text);
     line-height: 1.6;
     margin-bottom: 20px;
@@ -284,6 +285,11 @@ p {
     .section-title {
         font-size: 2rem;
     }
+
+    p {
+        font-size: 1rem;
+        /* Adjusted font size for medium devices */
+    }
 }
 
 @media (max-width: 768px) {
@@ -293,6 +299,7 @@ p {
 
     p {
         font-size: 0.875rem;
+        /* Adjusted font size for smaller tablets */
     }
 }
 
@@ -302,9 +309,11 @@ p {
     }
 
     p {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
+        /* Adjusted font size for small devices */
     }
 }
+
 
 /* Mission & Philosophy Section Styles */
 .card-container {
