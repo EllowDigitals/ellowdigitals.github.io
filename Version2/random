@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Our Technology Section -->
 <section id="technology" class="section">
     <div class="container">
@@ -73,6 +69,29 @@
     </div>
 </section>
 
+<!-- Our Technology Section -->
+<section id="technology" class="section">
+    <div class="container">
+        <h2 class="section-title">Our Technology</h2>
+        <p>We use the latest technologies and tools to ensure top-quality results. Our tech stack includes HTML,
+            CSS, JavaScript, and more advanced frameworks and libraries as required.</p>
+        <ul class="tech-list">
+            <li><strong>Tech Stack:</strong> HTML, CSS, JavaScript, React, Node.js, etc.</li>
+            <li><strong>Innovations:</strong> Cutting-edge frameworks, modern development practices, etc.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Testimonials</h2>
+        <blockquote>
+            <p>"EllowDigitals transformed our digital presence with their innovative solutions. Highly recommended!"</p>
+            <footer>- Client Name</footer>
+        </blockquote>
+    </div>
+</section>
 
 
 <!-- Footer -->

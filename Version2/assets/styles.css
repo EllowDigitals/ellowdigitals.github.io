@@ -1016,3 +1016,183 @@ p {
         font-size: 0.75rem;
     }
 }
+
+
+/* Our Technology Section Styles */
+#technology {
+    background-color: var(--gray-light);
+    padding: 60px 20px;
+}
+
+#technology .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#technology p {
+    font-size: 1.125rem;
+    color: var(--gray-light-text);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.tech-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.tech-item {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tech-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.tech-item i {
+    color: var(--yellow);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.tech-item h3 {
+    font-size: 1.5rem;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+}
+
+.tech-item p {
+    font-size: 1rem;
+    color: var(--gray-light-text);
+    margin-top: auto; /* Pushes text to the bottom of the box */
+}
+
+@media (max-width: 1199px) {
+    #technology .section-title {
+        font-size: 2.25rem;
+    }
+
+    #technology p {
+        font-size: 1rem;
+    }
+
+    .tech-item h3 {
+        font-size: 1.25rem;
+    }
+
+    .tech-item p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 991px) {
+    #technology .section-title {
+        font-size: 2rem;
+    }
+
+    .tech-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    #technology .section-title {
+        font-size: 1.75rem;
+    }
+
+    #technology p {
+        font-size: 0.875rem;
+    }
+
+    .tech-item {
+        padding: 10px;
+    }
+
+    .tech-item h3 {
+        font-size: 1.125rem;
+    }
+
+    .tech-item p {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* Testimonials Section Styles */
+#testimonials {
+    background-color: var(--white);
+    padding: 60px 20px;
+}
+
+#testimonials .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.testimonial-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.testimonial-item {
+    background: var(--gray-dark);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--yellow);
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+}
+
+.testimonial-item blockquote {
+    margin: 0;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--white);
+}
+
+.testimonial-item footer {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--yellow);
+}
+
+@media (max-width: 1199px) {
+    .testimonial-item {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 991px) {
+    .testimonial-item {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 767px) {
+    .testimonial-item {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
