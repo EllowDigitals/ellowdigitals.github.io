@@ -1,68 +1,105 @@
-/* Basic styles for body and html */
+/* CSS HEX Variables */
+:root {
+    --black: #000000;
+    --yellow: #fcc62d;
+    --white: #ffffff;
+    --gray-light: #f8f9fa;
+    --gray-dark: #e1e1e1;
+    --gray-light-text: #666666;
+    --dark-gray: #333333;
+}
+
+/* Basic Styles for Body and HTML */
 html,
 body {
     height: 100%;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
+    font-family: "Roboto", sans-serif;
+    color: var(--black);
+    background-color: var(--white);
 }
 
-/* Custom styles for the navbar */
+/* Scroll Progress Bar */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    z-index: 9999;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--yellow);
+    transition: width 0.25s ease;
+}
+
+/* Navbar */
 .navbar {
     padding: 0.75rem 1.5rem;
-    background-color: #1e1e1e;
+    background-color: var(--white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 .navbar-logo {
-    max-height: 40px;
-    margin-right: 0.75rem;
+    max-height: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar-nav .nav-link {
     padding: 0.75rem 1.5rem;
     font-weight: 500;
-    color: #000000;
+    color: var(--black);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar-nav .nav-link:hover {
-    background-color: #007bff;
+    background-color: var(--yellow);
+    color: var(--white);
     border-radius: 0.25rem;
-    color: #ffffff;
 }
 
-/* Dropdown menu styles */
+/* Dropdown Menu */
 .dropdown-menu {
     min-width: 200px;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
+    color: var(--black);
 }
 
 .dropdown-menu .dropdown-item {
     padding: 0.75rem 1.5rem;
-    color: #333;
+    color: var(--black);
+    transition: background-color 0.3s;
 }
 
 .dropdown-menu .dropdown-item:hover {
-    background-color: #f1f1f1;
+    background-color: var(--gray-light);
 }
 
-/* Responsive design for mobile and PC */
-@media (max-width: 992px) {
-    .navbar-nav {
-        margin-top: 0.5rem;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 0.75rem 1.5rem;
-    }
+/* Navbar Item Positioning */
+.navbar-nav .nav-item {
+    position: relative;
 }
 
-@media (min-width: 992px) {
-    .navbar-nav {
-        margin-left: auto;
-    }
+.navbar-nav .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.navbar-nav>.nav-item {
+    margin-left: 1rem;
 }
 
 /* Header Section */
@@ -78,7 +115,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
 }
 
 .video-background video {
@@ -98,7 +135,7 @@ header {
     height: 100%;
     padding: 0 2rem;
     text-align: center;
-    color: #fff;
+    color: var(--white);
     background: rgba(0, 0, 0, 0.4);
     border-radius: 0.5rem;
 }
@@ -107,22 +144,21 @@ header {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #fcfcfc;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.7);
 }
 
 .header-container p {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: #eaeaea;
     font-weight: 300;
+    color: white;
 }
 
 .btn {
     display: inline-block;
     padding: 12px 30px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--yellow);
+    color: var(--black);
     border: none;
     border-radius: 30px;
     text-decoration: none;
@@ -133,18 +169,17 @@ header {
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #e2b32e;
     transform: scale(1.05);
 }
 
 .scroll-down {
     font-size: 2rem;
     margin-top: 20px;
-    color: #ffffff;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+/* Responsive Font Sizes */
+@media (max-width: 1200px) {
     .header-container h1 {
         font-size: 3rem;
     }
@@ -153,12 +188,17 @@ header {
         font-size: 1.5rem;
     }
 
-    section {
-        padding: 60px 15px;
+    .btn {
+        font-size: 1rem;
+        padding: 10px 25px;
+    }
+
+    .scroll-down {
+        font-size: 1.5rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 992px) {
     .header-container h1 {
         font-size: 2.5rem;
     }
@@ -166,12 +206,415 @@ header {
     .header-container p {
         font-size: 1.2rem;
     }
+}
 
-    .header-container {
-        padding: 0 10px;
+@media (max-width: 768px) {
+    .header-container h1 {
+        font-size: 2rem;
     }
 
-    section {
-        padding: 40px 10px;
+    .header-container p {
+        font-size: 1rem;
     }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .scroll-down {
+        font-size: 1.5rem;
+    }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+}
+
+/* About Us Section Styles */
+#about-us {
+    background-color: var(--gray-light);
+    padding: 60px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--black);
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-title .underline::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 4px;
+    background-color: var(--yellow);
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+}
+
+p strong {
+    color: var(--black);
+}
+
+img {
+    border: 5px solid var(--gray-dark);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1200px) {
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #about-us {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    img {
+        border-width: 4px;
+    }
+}
+
+/* Mission & Philosophy Section Styles */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--gray-dark);
+    border-radius: 8px;
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+    /* Center the card horizontally */
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--yellow);
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    color: var(--dark-gray);
+}
+
+.card p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--black);
+}
+
+@media (max-width: 992px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90%;
+    }
+
+    .card h3 {
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        font-size: 1rem;
+    }
+}
+
+/* Why Choose Us Section */
+#why-choose-us {
+    padding: 60px 0;
+    background-color: var(--white);
+}
+
+#why-choose-us .container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.list-unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-unstyled li {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-unstyled li:last-child {
+    border-bottom: none;
+}
+
+.list-unstyled i {
+    font-size: 1.5rem;
+    color: var(--yellow);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    .list-unstyled li {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .list-unstyled li {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #why-choose-us {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .list-unstyled li {
+        font-size: 1rem;
+    }
+
+    .list-unstyled i {
+        font-size: 1.25rem;
+    }
+}
+
+/* Our Services Section Styles */
+#services {
+    padding: 60px 0;
+    background-color: var(--gray-light);
+}
+
+#services .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.service-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.service-item i {
+    font-size: 3rem;
+    color: var(--dark-gray);
+}
+
+.service-item h3 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+}
+
+.service-item p {
+    font-size: 1.125rem;
+    color: var(--gray-light-text);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .service-item {
+        flex: 1 1 calc(50% - 30px);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-item {
+        flex: 1 1 100%;
+        margin: 15px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .service-item i {
+        font-size: 2.5rem;
+    }
+
+    .service-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .service-item p {
+        font-size: 1rem;
+    }
+}
+
+/* General Section Styles */
+#how-we-work {
+    padding: 60px 0;
+    background-color: var(--gray-light);
+    /* Light background */
+}
+
+#how-we-work .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+#how-we-work .section-description {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--gray-light-text);
+}
+
+/* Container Styles */
+#how-we-work .container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Process and Approach Styles */
+#how-we-work .process-approach {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+#how-we-work .process,
+#how-we-work .approach {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--white);
+    /* White background for both sections */
+    padding: 20px;
+    border-radius: 8px;
+    /* Rounded corners for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+#how-we-work .process-title,
+#how-we-work .approach-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+}
+
+#how-we-work .process-list {
+    list-style: none;
+    padding: 0;
+}
+
+#how-we-work .process-list li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--dark-gray);
+}
+
+#how-we-work .process-list i {
+    margin-right: 10px;
+    color: var(--yellow);
+    /* Updated color for icons */
+}
+
+#how-we-work .approach p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gray-light-text);
 }
