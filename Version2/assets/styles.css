@@ -32,6 +32,7 @@ body {
 
 .progress-bar {
     height: 100%;
+    width: 0%;
     background-color: var(--yellow);
     transition: width 0.25s ease;
 }
@@ -237,12 +238,14 @@ header {
 
 /* About Us Section Styles */
 #about-us {
-    background-color: var(--gray-light);
+    background-color: #f5f5f5;
+    /* Light gray */
     padding: 60px 0;
 }
 
 #about-us .container {
-    background-color: var(--white);
+    background-color: #ffffff;
+    /* White */
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -253,7 +256,8 @@ header {
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .underline {
@@ -268,19 +272,20 @@ header {
     bottom: -5px;
     width: 100%;
     height: 2px;
-    background-color: var(--yellow);
+    background-color: #fcd34d;
+    /* Yellow */
     display: block;
 }
 
 p {
     font-size: 1.125rem;
-    /* Increased base font size */
-    color: var(--gray-light-text);
+    color: #666666;
+    /* Gray text */
     line-height: 1.6;
     margin-bottom: 20px;
-    /* Added margin for spacing between paragraphs */
 }
 
+/* Responsive Design */
 @media (max-width: 992px) {
     .section-title {
         font-size: 2rem;
@@ -288,7 +293,6 @@ p {
 
     p {
         font-size: 1rem;
-        /* Adjusted font size for medium devices */
     }
 }
 
@@ -299,7 +303,6 @@ p {
 
     p {
         font-size: 0.875rem;
-        /* Adjusted font size for smaller tablets */
     }
 }
 
@@ -310,10 +313,8 @@ p {
 
     p {
         font-size: 0.875rem;
-        /* Adjusted font size for small devices */
     }
 }
-
 
 /* Mission & Philosophy Section Styles */
 .card-container {
@@ -324,8 +325,10 @@ p {
 }
 
 .card {
-    background: var(--white);
-    border: 1px solid var(--gray-dark);
+    background: #ffffff;
+    /* White */
+    border: 1px solid #e0e0e0;
+    /* Light gray border */
     border-radius: 8px;
     padding: 30px;
     width: 100%;
@@ -337,22 +340,26 @@ p {
 
 .card-icon {
     font-size: 2.5rem;
-    color: var(--yellow);
+    color: #fcd34d;
+    /* Yellow */
     margin-bottom: 15px;
 }
 
 .card h3 {
     font-size: 1.75rem;
     margin-bottom: 15px;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .card p {
     font-size: 1.125rem;
     line-height: 1.6;
-    color: var(--black);
+    color: #000000;
+    /* Black */
 }
 
+/* Responsive Design */
 @media (max-width: 992px) {
     .card-container {
         flex-direction: column;
@@ -407,7 +414,8 @@ p {
 /* Why Choose Us Section */
 #why-choose-us {
     padding: 60px 0;
-    background-color: var(--white);
+    background-color: #ffffff;
+    /* White */
 }
 
 #why-choose-us .container {
@@ -420,7 +428,8 @@ p {
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .list-unstyled {
@@ -433,7 +442,8 @@ p {
     font-size: 1.125rem;
     line-height: 1.6;
     padding: 15px 0;
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid #f0f0f0;
+    /* Very light gray */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -445,7 +455,8 @@ p {
 
 .list-unstyled i {
     font-size: 1.5rem;
-    color: var(--yellow);
+    color: #fcd34d;
+    /* Yellow */
 }
 
 /* Responsive Design */
@@ -490,7 +501,8 @@ p {
 /* Our Services Section Styles */
 #services {
     padding: 60px 0;
-    background-color: var(--gray-light);
+    background-color: #f5f5f5;
+    /* Light gray */
 }
 
 #services .container {
@@ -503,11 +515,13 @@ p {
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .service-item {
-    background-color: var(--white);
+    background-color: #ffffff;
+    /* White */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -521,18 +535,21 @@ p {
 
 .service-item i {
     font-size: 3rem;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .service-item h3 {
     font-size: 1.75rem;
     margin-bottom: 10px;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 .service-item p {
     font-size: 1.125rem;
-    color: var(--gray-light-text);
+    color: #666666;
+    /* Gray text */
 }
 
 /* Responsive Design */
@@ -568,22 +585,24 @@ p {
 /* General Section Styles */
 #how-we-work {
     padding: 60px 0;
-    background-color: var(--gray-light);
-    /* Light background */
+    background-color: #f5f5f5;
+    /* Light gray */
 }
 
 #how-we-work .section-title {
     font-size: 2.5rem;
     margin-bottom: 20px;
     text-align: center;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 #how-we-work .section-description {
     font-size: 1.1rem;
     text-align: center;
     margin-bottom: 40px;
-    color: var(--gray-light-text);
+    color: #666666;
+    /* Gray text */
 }
 
 /* Container Styles */
@@ -604,20 +623,19 @@ p {
 #how-we-work .approach {
     flex: 1;
     min-width: 300px;
-    background-color: var(--white);
-    /* White background for both sections */
+    background-color: #ffffff;
+    /* White */
     padding: 20px;
     border-radius: 8px;
-    /* Rounded corners for a softer look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
 }
 
 #how-we-work .process-title,
 #how-we-work .approach-title {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 #how-we-work .process-list {
@@ -630,21 +648,22 @@ p {
     font-size: 1rem;
     display: flex;
     align-items: center;
-    color: var(--dark-gray);
+    color: #333333;
+    /* Dark gray */
 }
 
 #how-we-work .process-list i {
     margin-right: 10px;
-    color: var(--yellow);
-    /* Updated color for icons */
+    color: #fcd34d;
+    /* Yellow */
 }
 
 #how-we-work .approach p {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--gray-light-text);
+    color: #666666;
+    /* Gray text */
 }
-
 
 /* Recent Projects Section Styles */
 #projects {
@@ -845,5 +864,155 @@ p {
         font-size: 0.75rem;
         padding: 6px 12px;
         /* Even smaller padding for very small screens */
+    }
+}
+
+
+/* Our Features Section Styles */
+#features {
+    padding: 60px 0;
+    background-color: var(--gray-light);
+}
+
+#features .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.feature-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--yellow);
+}
+
+.feature-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+}
+
+.feature-content p {
+    font-size: 1.125rem;
+    color: var(--gray-light-text);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .feature-item {
+        max-width: calc(50% - 30px);
+    }
+}
+
+@media (max-width: 992px) {
+    .feature-item {
+        max-width: calc(50% - 30px);
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .feature-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-item {
+        max-width: 100%;
+        margin: 15px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .feature-content p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .feature-icon {
+        font-size: 1.75rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.125rem;
+    }
+
+    .feature-content p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 1.5rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1rem;
+    }
+
+    .feature-content p {
+        font-size: 0.75rem;
     }
 }

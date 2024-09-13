@@ -1,18 +1,6 @@
 
 
 
-<!-- Our Features Section -->
-<section id="features" class="section bg-light">
-    <div class="container">
-        <h2 class="section-title">Our Features</h2>
-        <ul>
-            <li>Creative Ideas</li>
-            <li>Modern Design</li>
-            <li>Fully Responsive</li>
-            <li>Excellent Documentation</li>
-        </ul>
-    </div>
-</section>
 
 <!-- Our Technology Section -->
 <section id="technology" class="section">
@@ -84,6 +72,7 @@
         </p>
     </div>
 </section>
+
 
 
 <!-- Footer -->
