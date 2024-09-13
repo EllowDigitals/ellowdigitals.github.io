@@ -341,6 +341,11 @@ header {
     margin-top: 20px;
 }
 
+header.scrolled {
+    background: rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
+}
+
 /* Responsive Font Sizes */
 @media (max-width: 1200px) {
     .header-container h1 {
