@@ -1761,7 +1761,7 @@ p {
 
 /* Work Together Section */
 #work-together {
-    background-color: #FFF;
+    background-color: #fff;
     padding: 2rem 1rem;
     text-align: center;
 }
@@ -1902,24 +1902,19 @@ p {
     }
 }
 
-
 /* For WebKit browsers like Chrome, Safari */
 ::-webkit-scrollbar {
-    width: 12px;
-    /* width of the scrollbar */
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
-    /* color of the track */
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--yellow);
-    /* color of the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #e0e0e0;
-    /* color when hovering over the scrollbar */
 }
