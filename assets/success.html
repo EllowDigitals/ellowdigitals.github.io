@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Success Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,29 +17,36 @@
             background-color: #f4f4f4;
         }
 
-        .success-message,
-        .loader-wrapper {
-            display: none;
+        .message-wrapper {
             text-align: center;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-color: #4CAF50;
+            background-color: #4caf50;
             color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
         }
 
-        .success-message i {
+        .message-wrapper i {
             font-size: 3em;
             margin-bottom: 10px;
         }
 
         .loader-wrapper {
+            display: none;
             background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .loader {
@@ -72,7 +79,7 @@
         }
 
         @media only screen and (max-width: 600px) {
-            .success-message {
+            .message-wrapper {
                 padding: 15px;
             }
 
@@ -85,7 +92,7 @@
 </head>
 
 <body>
-    <div class="success-message" id="successMessage">
+    <div class="message-wrapper" id="successMessage">
         <i class="fas fa-check-circle"></i>
         <p>Your message has been sent successfully.</p>
     </div>
@@ -96,20 +103,17 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const successMessage = document.getElementById('successMessage');
-            const loaderWrapper = document.getElementById('loaderWrapper');
+            const successMessage = document.getElementById("successMessage");
+            const loaderWrapper = document.getElementById("loaderWrapper");
 
-            successMessage.style.display = 'block';
+            successMessage.style.display = "block";
             setTimeout(() => {
-                successMessage.style.display = 'none';
-                loaderWrapper.style.display = 'flex';
+                successMessage.style.display = "none";
+                loaderWrapper.style.display = "flex";
                 setTimeout(() => {
-                    window.location.href = 'https://ellowdigitals.netlify.app';
-                    setTimeout(() => {
-                        window.location.href = 'https://ellowdigitals.netlify.app/';
-                    }, 5000);
-                }, 4000);
-            }, 4000);
+                    window.location.href = "https://ellowdigitals.netlify.app";
+                }, 2000);
+            }, 2000);
         });
     </script>
 </body>

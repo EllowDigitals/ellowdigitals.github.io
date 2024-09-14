@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Scroll Progress Bar Throttled
-    const scrollProgress = document.getElementById("scrollProgress");
+    // Helper Function to Throttle Event Handlers
     const throttle = (func, limit) => {
         let lastFunc;
         let lastRan;
@@ -22,16 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     };
 
-    const updateScrollProgress = () => {
+    // Scroll Progress Bar
+    const scrollProgress = document.getElementById("scrollProgress");
+    const updateScrollProgress = throttle(() => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
         if (scrollProgress) {
             scrollProgress.style.width = `${(scrollTop / scrollHeight) * 100}%`;
         }
-    };
+    }, 50);
 
     if (scrollProgress) {
-        window.addEventListener("scroll", throttle(updateScrollProgress, 50));
+        window.addEventListener("scroll", updateScrollProgress);
         updateScrollProgress(); // Initialize on load
     }
 
@@ -39,28 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
     const content = document.getElementById("content");
 
-    // Function to hide preloader
     const hidePreloader = () => {
         if (preloader && content) {
             preloader.style.transition = "opacity 0.5s ease-out";
-            preloader.style.opacity = "0";  // Fade out
+            preloader.style.opacity = "0"; // Fade out
             setTimeout(() => {
-                preloader.style.display = "none";  // Remove from view after fade out
-                content.style.display = "block";  // Show content
-            }, 500);  // Matches the transition duration (0.5s)
+                preloader.style.display = "none"; // Remove from view
+                content.style.display = "block"; // Show content
+            }, 500); // Matches the transition duration
         }
     };
 
-    // Trigger hidePreloader after 2 seconds (or adjust timing as necessary)
     setTimeout(hidePreloader, 2000);
 
     // Smooth Scroll Implementation
-    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    smoothScrollLinks.forEach((link) => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
-            const targetId = link.getAttribute("href").substring(1);
-            const targetElement = document.getElementById(targetId);
+            const targetElement = document.querySelector(link.getAttribute("href"));
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop,
@@ -73,9 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Header Scroll Effect
     const header = document.querySelector("header");
     if (header) {
-        window.addEventListener("scroll", throttle(() => {
-            header.classList.toggle("scrolled", window.scrollY > 50);
-        }, 50));
+        window.addEventListener(
+            "scroll",
+            throttle(() => {
+                header.classList.toggle("scrolled", window.scrollY > 50);
+            }, 50)
+        );
     }
 
     // Form Validation with Improved Error Handling
@@ -83,27 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
-            const name = document.getElementById("name");
-            const email = document.getElementById("email");
-            const message = document.getElementById("message");
+            const fields = {
+                name: document.getElementById("name"),
+                email: document.getElementById("email"),
+                message: document.getElementById("message"),
+            };
             let isValid = true;
 
-            const fields = [name, email, message];
-            fields.forEach((input) => input && input.classList.remove("is-invalid"));
-
-            if (!name?.value.trim()) {
-                name?.classList.add("is-invalid");
-                isValid = false;
-            }
+            Object.keys(fields).forEach((key) => {
+                const field = fields[key];
+                if (field) {
+                    field.classList.remove("is-invalid");
+                    if (!field.value.trim()) {
+                        field.classList.add("is-invalid");
+                        isValid = false;
+                    }
+                }
+            });
 
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email?.value.trim())) {
-                email?.classList.add("is-invalid");
-                isValid = false;
-            }
-
-            if (!message?.value.trim()) {
-                message?.classList.add("is-invalid");
+            if (fields.email && !emailPattern.test(fields.email.value.trim())) {
+                fields.email.classList.add("is-invalid");
                 isValid = false;
             }
 
@@ -114,15 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Scroll to Top Button with Throttling
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    const toggleScrollToTopBtn = () => {
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    const toggleScrollToTopBtn = throttle(() => {
         if (scrollToTopBtn) {
             scrollToTopBtn.style.display = window.scrollY > 20 ? "block" : "none";
         }
-    };
+    }, 100);
 
     if (scrollToTopBtn) {
-        window.addEventListener('scroll', throttle(toggleScrollToTopBtn, 100));
+        window.addEventListener("scroll", toggleScrollToTopBtn);
         toggleScrollToTopBtn(); // Initial check
 
         scrollToTopBtn.addEventListener("click", () => {
@@ -135,13 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "assets/videos/bgvideo0.mp4",
         "assets/videos/bgvideo1.mp4",
         "assets/videos/bgvideo2.mp4",
-        "assets/videos/bgvideo3.mp4"
+        "assets/videos/bgvideo3.mp4",
     ];
 
     const bgVideo = document.getElementById("bgVideo");
     const videoSource = document.getElementById("videoSource");
 
-    // Function to set a random video
     const loadRandomVideo = () => {
         if (bgVideo && videoSource) {
             try {
@@ -154,11 +154,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Optimize video loading with 'canplay' event
     if (bgVideo) {
-        bgVideo.addEventListener('canplay', () => {
+        bgVideo.addEventListener("canplay", () => {
             bgVideo.play();
         });
         loadRandomVideo(); // Load video on page load
     }
+
+    // Disable F12 and Inspect Element
+    const disableDevTools = () => {
+        window.addEventListener("keydown", (event) => {
+            if (
+                event.key === "F12" ||
+                (event.ctrlKey && event.shiftKey && event.key === "I")
+            ) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        window.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            return false;
+        });
+    };
+
+    disableDevTools();
 });
