@@ -934,7 +934,6 @@ p {
 }
 
 /* Recent Projects Section Styles */
-/* Styles specific to the Recent Projects Section */
 #recent-projects {
     padding: 60px 0;
     background-color: var(--gray-light);
@@ -956,25 +955,47 @@ p {
 
 .recent-projects-section .projects-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    overflow-y: hidden;
+    /* Hide vertical overflow */
     gap: 30px;
-    justify-content: center;
+    /* Space between items */
+    padding: 10px 0;
+    /* Optional padding for aesthetics */
 }
 
+/* Set project items */
 .recent-projects-section .project-item {
     background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    /* Rounded corners for a softer look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Softer shadow */
     overflow: hidden;
-    width: 100%;
-    max-width: 500px;
+    flex: 0 0 auto;
+    /* Prevent items from growing/shrinking */
+    width: 350px;
+    /* Increased width for a thicker appearance */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 30px;
+    /* Increased padding for more content space */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Smooth transition for hover effects */
 }
 
+/* Hover effect for project items */
+.recent-projects-section .project-item:hover {
+    transform: translateY(-5px);
+    /* Lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* More pronounced shadow */
+}
+
+/* Ensure images are responsive */
 .recent-projects-section .project-item img {
     width: 150px;
     height: 150px;
@@ -991,6 +1012,8 @@ p {
     font-size: 1.75rem;
     margin-bottom: 15px;
     color: var(--dark-gray);
+    font-weight: 600;
+    /* Slightly bolder for emphasis */
 }
 
 .recent-projects-section .project-description {
@@ -1005,6 +1028,8 @@ p {
     border-left: 4px solid var(--yellow);
     padding-left: 15px;
     margin: 0;
+    font-style: italic;
+    /* Italic style for quotes */
 }
 
 .recent-projects-section .client-feedback footer {
@@ -1030,9 +1055,9 @@ p {
     color: var(--white);
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Smooth transition */
 }
 
+/* Button styles */
 .recent-projects-section .btn-primary {
     background-color: var(--yellow);
     border-color: #fdc705;
@@ -1046,25 +1071,36 @@ p {
 .recent-projects-section .btn:hover {
     background-color: #000;
     border-color: #000;
-    /* Button color on hover */
     color: var(--white);
-    /* Optional: Change text color on hover for better contrast */
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-    #recent-projects .project-item {
-        max-width: calc(50% - 15px);
+@media (min-width: 1201px) {
+    .recent-projects-section .project-item {
+        width: 350px;
+        /* Fixed width for large screens */
     }
 }
 
-@media (max-width: 992px) {
-    #recent-projects .project-item {
-        max-width: calc(50% - 15px);
+@media (max-width: 1200px) {
+    .recent-projects-section .project-item {
+        max-width: calc(33.33% - 20px);
+        /* Three items per row */
     }
 
     #recent-projects .section-title {
         font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .recent-projects-section .project-item {
+        max-width: calc(50% - 20px);
+        /* Two items per row */
+    }
+
+    #recent-projects .section-title {
+        font-size: 2rem;
     }
 
     #recent-projects .project-content h3 {
@@ -1074,23 +1110,25 @@ p {
     #recent-projects .project-description {
         font-size: 0.9rem;
     }
-
-    #recent-projects .client-feedback blockquote {
-        font-size: 0.9rem;
-    }
-
-    #recent-projects .project-buttons .btn {
-        font-size: 0.9rem;
-    }
 }
 
 @media (max-width: 768px) {
-    #recent-projects .project-item {
+    .recent-projects-section .projects-wrapper {
+        flex-direction: row;
+        /* Maintain horizontal layout */
+        overflow-x: auto;
+        /* Ensure horizontal scrolling */
+    }
+
+    .recent-projects-section .project-item {
         max-width: 100%;
+        /* Full width on smaller devices */
+        margin-bottom: 20px;
+        /* Add spacing between items */
     }
 
     #recent-projects .section-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     #recent-projects .project-content h3 {
@@ -1100,37 +1138,29 @@ p {
     #recent-projects .project-description {
         font-size: 0.875rem;
     }
-
-    #recent-projects .client-feedback blockquote {
-        font-size: 0.875rem;
-    }
-
-    #recent-projects .project-buttons .btn {
-        font-size: 0.875rem;
-        padding: 8px 16px;
-    }
 }
 
 @media (max-width: 480px) {
-    #recent-projects .section-title {
-        font-size: 1.75rem;
+    .recent-projects-section .section-title {
+        font-size: 1.5rem;
+        /* Adjust title size for very small screens */
     }
 
-    #recent-projects .project-content h3 {
+    .recent-projects-section .project-content h3 {
         font-size: 1.125rem;
+        /* Slightly smaller title for project items */
     }
 
-    #recent-projects .project-description {
+    .recent-projects-section .project-description {
         font-size: 0.75rem;
+        /* Adjust description size for readability */
     }
 
-    #recent-projects .client-feedback blockquote {
+    .recent-projects-section .project-buttons .btn {
         font-size: 0.75rem;
-    }
-
-    #recent-projects .project-buttons .btn {
-        font-size: 0.75rem;
+        /* Adjust button size for smaller screens */
         padding: 6px 12px;
+        /* Reduce padding */
     }
 }
 

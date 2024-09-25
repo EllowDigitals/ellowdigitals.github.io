@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollProgress = document.getElementById("scrollProgress");
     const updateScrollProgress = throttle(() => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight =
-            document.documentElement.scrollHeight - window.innerHeight;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
         if (scrollProgress) {
             scrollProgress.style.width = `${(scrollTop / scrollHeight) * 100}%`;
         }
@@ -71,12 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Header Scroll Effect
     const header = document.querySelector("header");
     if (header) {
-        window.addEventListener(
-            "scroll",
-            throttle(() => {
-                header.classList.toggle("scrolled", window.scrollY > 50);
-            }, 50)
-        );
+        window.addEventListener("scroll", throttle(() => {
+            header.classList.toggle("scrolled", window.scrollY > 50);
+        }, 50));
     }
 
     // Form Validation with Improved Error Handling
