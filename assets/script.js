@@ -177,3 +177,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     disableDevTools();
 });
+
+
+// JavaScript for Recent Projects Section
+
+// Select all project buttons
+const projectButtons = document.querySelectorAll('.project-buttons a');
+
+// Add event listeners to each button
+projectButtons.forEach(button => {
+    button.addEventListener('click', function (event) {
+        // Prevent default action for links that don't lead to a new page
+        if (this.getAttribute('href') === "#") {
+            event.preventDefault();
+        }
+
+        // Display project details in an alert (can be replaced with modals)
+        const projectName = this.closest('.project-item').querySelector('h3').innerText;
+        alert(`You clicked on the "${projectName}" button!`);
+
+        // For demonstration, you could also log the link
+        console.log(`Link: ${this.href}`);
+    });
+});

@@ -957,8 +957,6 @@ p {
     display: flex;
     overflow-x: auto;
     /* Enable horizontal scrolling */
-    overflow-y: hidden;
-    /* Hide vertical overflow */
     gap: 30px;
     /* Space between items */
     padding: 10px 0;
@@ -972,17 +970,14 @@ p {
     /* Rounded corners for a softer look */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     /* Softer shadow */
-    overflow: hidden;
-    flex: 0 0 auto;
-    /* Prevent items from growing/shrinking */
-    width: 350px;
-    /* Increased width for a thicker appearance */
+    width: 320px;
+    /* Fixed width */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 30px;
-    /* Increased padding for more content space */
+    padding: 15px;
+    /* Padding for aesthetics */
     transition: transform 0.3s, box-shadow 0.3s;
     /* Smooth transition for hover effects */
 }
@@ -997,118 +992,103 @@ p {
 
 /* Ensure images are responsive */
 .recent-projects-section .project-item img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 100px;
+    /* Adjusted for better display */
+    height: 100px;
+    /* Keep images square */
+    border-radius: 12px;
+    /* Rounded corners for images */
     object-fit: cover;
-    margin-bottom: 15px;
+    /* Ensures the image covers the area without distortion */
+    margin-bottom: 10px;
+    /* Space below the image */
 }
 
 .recent-projects-section .project-content {
-    padding: 20px;
+    flex-grow: 1;
+    /* Allow content to grow */
 }
 
 .recent-projects-section .project-content h3 {
-    font-size: 1.75rem;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    /* Title size */
+    margin-bottom: 5px;
+    /* Space below title */
     color: var(--dark-gray);
-    font-weight: 600;
-    /* Slightly bolder for emphasis */
 }
 
 .recent-projects-section .project-description {
-    font-size: 1rem;
-    color: var(--gray-light-text);
-    margin-bottom: 20px;
-}
-
-.recent-projects-section .client-feedback blockquote {
-    font-size: 1rem;
-    color: var(--dark-gray);
-    border-left: 4px solid var(--yellow);
-    padding-left: 15px;
-    margin: 0;
-    font-style: italic;
-    /* Italic style for quotes */
-}
-
-.recent-projects-section .client-feedback footer {
     font-size: 0.875rem;
+    /* Description size */
     color: var(--gray-light-text);
-    margin-top: 5px;
+    margin-bottom: 10px;
+    /* Space below description */
 }
 
 .recent-projects-section .project-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
-    flex-direction: column;
-    align-items: center;
+    /* Space between buttons */
+    margin-top: 10px;
+    /* Margin at the top of buttons */
 }
 
-.recent-projects-section .project-buttons .btn {
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
+/* Common button styles */
+.recent-projects-section .btn {
     display: inline-block;
-    color: var(--white);
+    /* Ensure buttons are inline-block */
+    padding: 10px 20px;
+    /* Uniform padding */
+    font-size: 1rem;
+    /* Consistent font size */
     text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Center the text */
+    border-radius: 5px;
+    /* Rounded corners */
+    text-decoration: none;
+    /* Remove underline from links */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Smooth transitions */
 }
 
-/* Button styles */
+/* Primary button styles */
 .recent-projects-section .btn-primary {
     background-color: var(--yellow);
+    /* Background color for primary button */
     border-color: #fdc705;
+    /* Border color for primary button */
+    color: #fff;
+    /* Text color for primary */
 }
 
+/* Secondary button styles */
 .recent-projects-section .btn-secondary {
     background-color: var(--dark-gray);
+    /* Background color for secondary button */
+    color: #fff;
+    /* Text color for secondary */
 }
 
-/* Hover Effect */
+/* Button hover effects */
 .recent-projects-section .btn:hover {
-    background-color: #000;
-    border-color: #000;
-    color: var(--white);
+    opacity: 0.8;
+    /* Slight opacity change on hover */
+    transform: scale(1.05);
+    /* Slight scaling effect on hover */
 }
 
 /* Responsive Design */
-@media (min-width: 1201px) {
-    .recent-projects-section .project-item {
-        width: 350px;
-        /* Fixed width for large screens */
-    }
-}
-
 @media (max-width: 1200px) {
     .recent-projects-section .project-item {
         max-width: calc(33.33% - 20px);
         /* Three items per row */
     }
-
-    #recent-projects .section-title {
-        font-size: 2.25rem;
-    }
 }
 
 @media (max-width: 992px) {
     .recent-projects-section .project-item {
-        max-width: calc(50% - 20px);
+        max-width: calc(60% - 20px);
         /* Two items per row */
-    }
-
-    #recent-projects .section-title {
-        font-size: 2rem;
-    }
-
-    #recent-projects .project-content h3 {
-        font-size: 1.5rem;
-    }
-
-    #recent-projects .project-description {
-        font-size: 0.9rem;
     }
 }
 
@@ -1126,43 +1106,8 @@ p {
         margin-bottom: 20px;
         /* Add spacing between items */
     }
-
-    #recent-projects .section-title {
-        font-size: 1.75rem;
-    }
-
-    #recent-projects .project-content h3 {
-        font-size: 1.25rem;
-    }
-
-    #recent-projects .project-description {
-        font-size: 0.875rem;
-    }
 }
 
-@media (max-width: 480px) {
-    .recent-projects-section .section-title {
-        font-size: 1.5rem;
-        /* Adjust title size for very small screens */
-    }
-
-    .recent-projects-section .project-content h3 {
-        font-size: 1.125rem;
-        /* Slightly smaller title for project items */
-    }
-
-    .recent-projects-section .project-description {
-        font-size: 0.75rem;
-        /* Adjust description size for readability */
-    }
-
-    .recent-projects-section .project-buttons .btn {
-        font-size: 0.75rem;
-        /* Adjust button size for smaller screens */
-        padding: 6px 12px;
-        /* Reduce padding */
-    }
-}
 
 /* Our Features Section Styles */
 #features {
