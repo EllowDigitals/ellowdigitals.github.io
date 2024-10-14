@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Helper Function to Throttle Event Handlers
+
+    // Helper Function: Throttle Event Handlers
     const throttle = (func, limit) => {
-        let lastFunc;
-        let lastRan;
+        let lastFunc, lastRan;
         return function () {
             const context = this;
             const args = arguments;
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastRan = Date.now();
             } else {
                 clearTimeout(lastFunc);
-                lastFunc = setTimeout(function () {
+                lastFunc = setTimeout(() => {
                     if (Date.now() - lastRan >= limit) {
                         func.apply(context, args);
                         lastRan = Date.now();
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateScrollProgress(); // Initialize on load
     }
 
-    // Preloader and Content Elements
+    // Preloader Logic
     const preloader = document.getElementById("preloader");
     const content = document.getElementById("content");
 
@@ -75,11 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 50));
     }
 
-    // Form Validation with Improved Error Handling
+    // Form Validation
     const form = document.getElementById("contactForm");
     if (form) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
+
             const fields = {
                 name: document.getElementById("name"),
                 email: document.getElementById("email"),
@@ -110,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Scroll to Top Button with Throttling
+    // Scroll to Top Button
     const scrollToTopBtn = document.getElementById("scrollToTopBtn");
     const toggleScrollToTopBtn = throttle(() => {
         if (scrollToTopBtn) {
@@ -127,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Random Video Loading with Error Handling and Optimization
+    // Random Video Loading with Error Handling
     const videos = [
         "assets/videos/bgvideo0.mp4",
         "assets/videos/bgvideo1.mp4",
@@ -176,27 +177,33 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     disableDevTools();
-});
 
+    // Animation Support Detection
+    const addAnimationSupport = () => {
+        const supportsAnimation = (style) => style.animation !== undefined;
 
-// JavaScript for Recent Projects Section
+        document.body.classList.add(
+            supportsAnimation(document.body.style) ? "supports-animation" : "no-animation"
+        );
+    };
 
-// Select all project buttons
-const projectButtons = document.querySelectorAll('.project-buttons a');
+    addAnimationSupport();
 
-// Add event listeners to each button
-projectButtons.forEach(button => {
-    button.addEventListener('click', function (event) {
-        // Prevent default action for links that don't lead to a new page
-        if (this.getAttribute('href') === "#") {
-            event.preventDefault();
-        }
+    // Recent Projects Section
+    const projectButtons = document.querySelectorAll(".project-buttons a");
 
-        // Display project details in an alert (can be replaced with modals)
-        const projectName = this.closest('.project-item').querySelector('h3').innerText;
-        alert(`You clicked on the "${projectName}" button!`);
+    projectButtons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+            // Prevent default action for dummy links
+            if (this.getAttribute("href") === "#") {
+                event.preventDefault();
+            }
 
-        // For demonstration, you could also log the link
-        console.log(`Link: ${this.href}`);
+            // Show project details (can replace alert with modal)
+            const projectName = this.closest(".project-item").querySelector("h3").innerText;
+            alert(`You clicked on the "${projectName}" button!`);
+
+            console.log(`Link: ${this.href}`);
+        });
     });
 });
