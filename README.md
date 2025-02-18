@@ -34,3 +34,5 @@ Feel free to reach out to us for any inquiries or project discussions:
 - **Website**: EllowDigitals
 
 We look forward to collaborating with you and bringing your digital vision to life!
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/72e02912-63c1-4d3b-b38b-2665378f24b8/deploy-status)](https://app.netlify.com/sites/ellowdigitals/deploys)
