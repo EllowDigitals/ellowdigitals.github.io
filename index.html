@@ -2,57 +2,91 @@
 <html lang="en">
 
 <head>
+    <!-- Basic Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#fcc62d" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>EllowDigitals | Empowering Digital Transformation</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions. Boost your digital presence with us." />
-    <meta name="keywords" content="EllowDigitals, Digital Transformation, SEO, Web Development, Digital Marketing" />
+    <meta name="keywords"
+        content="EllowDigitals, Digital Transformation, SEO Services, Web Development, UI/UX Design, Digital Marketing, Business Growth, Online Strategy" />
     <meta name="author" content="EllowDigitals" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ellowdigitals.netlify.app/" />
 
-    <!-- Open Graph (OG) for Social Media Sharing -->
+    <!-- Alternate Language (if multilingual site) -->
+    <link rel="alternate" href="https://ellowdigitals.netlify.app/" hreflang="en" />
+
+    <!-- Open Graph (OG) Meta Tags -->
     <meta property="og:title" content="EllowDigitals | Empowering Digital Transformation" />
     <meta property="og:description"
         content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions." />
     <meta property="og:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg" />
     <meta property="og:url" content="https://ellowdigitals.netlify.app" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EllowDigitals" />
 
-    <!-- Twitter Card for Social Media Sharing -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="EllowDigitals | Empowering Digital Transformation" />
     <meta name="twitter:description"
         content="EllowDigitals empowers businesses with cutting-edge digital transformation solutions." />
     <meta name="twitter:image" content="https://ellowdigitals.netlify.app/assets/favicon/share.jpg" />
     <meta name="twitter:site" content="@YourTwitterHandle" />
+    <meta name="twitter:creator" content="@YourTwitterHandle" />
 
-    <!-- Favicon -->
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="WMhKG8wyqadZSkX0PKIkyv--6CSGCaErWsG6j5pnV-Q" />
+
+    <!-- Structured Data with JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "EllowDigitals",
+        "url": "https://ellowdigitals.netlify.app",
+        "logo": "https://ellowdigitals.netlify.app/assets/favicon/share.jpg",
+        "sameAs": [
+            "https://www.facebook.com/ellowdigitals",
+            "https://twitter.com/ellowdigitals",
+            "https://www.linkedin.com/company/ellowdigitals",
+            "https://www.instagram.com/ellowdigitals"
+        ],
+        "description": "EllowDigitals empowers businesses with cutting-edge digital transformation solutions."
+    }
+    </script>
+
+    <!-- Favicon and App Icons -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
-    <!-- Preconnect to important domains -->
+    <!-- Performance & Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-
-    <!-- FontAwesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap" />
 
-    <!-- Custom Stylesheet -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="/assets/styles.css" />
-    <meta name="google-site-verification" content="WMhKG8wyqadZSkX0PKIkyv--6CSGCaErWsG6j5pnV-Q" />
 </head>
 
 
@@ -75,12 +109,15 @@
             <span>D</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span><span>s</span>
         </div>
     </div>
-
     <!-- Scroll Progress Bar -->
-    <div id="scrollProgressContainer" class="progress-container position-fixed top-0 start-0 w-100">
-        <div id="scrollProgress" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
-            aria-valuemin="0" aria-valuemax="100"></div>
+    <div id="scrollProgressContainer" class="progress-container position-fixed top-0 start-0 w-100"
+        style="z-index: 9999;">
+        <div id="scrollProgress" class="progress-bar" role="progressbar"
+            style="width: 0%; height: 4px; background-color: #007bff;" aria-label="Page scroll progress"
+            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        </div>
     </div>
+
 
     <!-- Navbar -->
     <nav id="content" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
