@@ -2398,74 +2398,60 @@ strong {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    /* Center horizontally */
     width: auto;
     padding: 12px 24px;
-    /* More padding for better spacing */
     text-align: center;
     font-size: var(--font-size-sm);
     color: #fff;
     border-radius: 20px;
-    /* Rounded corners for all messages */
     background-color: var(--color-primary);
-    /* Default color for online */
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 0;
     transform: translateY(100%);
-    /* Initially hide the status bar */
     z-index: 9999;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-    /* Optional shadow for better visibility */
     max-width: 90%;
-    /* Allow more room for larger screens */
     margin-bottom: 12px;
-    /* Adjust margin for spacing */
     word-wrap: break-word;
-    /* Prevent long text from overflowing */
 }
 
 /* Sliding Animation */
 #connection-status.show {
     opacity: 1;
     transform: translateY(0);
-    /* Slide up effect */
+    /* Slide effect */
 }
 
 /* Online Status Styling */
 #connection-status.online {
     background-color: var(--color-success);
-    /* Green for online */
     font-weight: bold;
 }
 
 /* Offline Status Styling */
 #connection-status.offline {
     background-color: var(--color-danger);
-    /* Red for offline */
     font-weight: bold;
 }
 
 /* Welcome Message Styling */
 #connection-status.welcome {
     background-color: var(--color-info);
-    /* Blue for welcome */
     font-size: var(--font-size-md);
-    /* Larger text for welcome */
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 25px;
-    /* More rounded for the welcome message */
 }
 
-/* Styling for small rounded corner message and ensuring correct stacking */
+/* Shared Styling for rounded corners and padding */
 #connection-status.welcome,
 #connection-status.online,
 #connection-status.offline {
     border-radius: 25px;
-    /* Round corners for online/offline statuses */
     font-size: var(--font-size-sm);
     text-transform: capitalize;
     padding: 10px 20px;
-    /* Adjust padding for a more balanced look */
 }
 
 /* Media Queries for better responsiveness */
@@ -2473,16 +2459,13 @@ strong {
 /* Mobile View (smaller screens) */
 @media screen and (max-width: 600px) {
     #connection-status {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-xs);
         width: 90%;
-        /* Smaller width on mobile */
         padding: 8px 16px;
-        /* Smaller padding */
     }
 
     #connection-status.welcome {
         font-size: var(--font-size-md);
-        /* Increase size for welcome on smaller screens */
     }
 }
 
@@ -2491,7 +2474,6 @@ strong {
     #connection-status {
         font-size: var(--font-size-sm);
         width: 85%;
-        /* Adjust width for tablet */
     }
 }
 
@@ -2499,11 +2481,8 @@ strong {
 @media screen and (min-width: 1024px) {
     #connection-status {
         font-size: var(--font-size-md);
-        /* Larger font size for desktop */
         width: 60%;
-        /* Reduce width on larger screens */
         padding: 12px 30px;
-        /* More padding on larger screens */
     }
 }
 
@@ -2511,9 +2490,7 @@ strong {
 @media screen and (min-width: 1440px) {
     #connection-status {
         font-size: var(--font-size-lg);
-        /* Increase font size on large screens */
         width: 50%;
-        /* Even narrower for very wide screens */
     }
 }
 

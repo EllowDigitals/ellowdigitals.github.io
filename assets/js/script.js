@@ -126,7 +126,7 @@ function ensureMetaDescription() {
 // 🔌 Responsive & Animated Connection Status Notifier v3.0
 function monitorConnectionStatus() {
     const statusEl = document.createElement("div");
-    statusEl.id = "connection-status";
+    statusEl.id = "connection-status"; // General Styling for Connection Status Bar
     document.body.appendChild(statusEl);
 
     const showStatus = (message, type = "online") => {
@@ -165,8 +165,6 @@ function monitorConnectionStatus() {
         localStorage.setItem("lastStatus", type);
     }
 }
-
-
 
 // 📱 Optimized Navbar Link Handler (v2.5)
 function handleNavbarLinks() {
