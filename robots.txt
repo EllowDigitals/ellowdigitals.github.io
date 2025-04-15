@@ -1,7 +1,18 @@
-User-agent: *
-Disallow: /assets/  # Disallow crawling of the /assets/ directory
-Disallow: /README.md  # Disallow crawling of a specific file
-Disallow: /old/  # Disallow crawling of the /old/ directory
+# robots.txt for https://ellowdigitals.netlify.app/
 
-# Allow everything else
-Allow: /
+# Allow all search engines to crawl the entire site
+User-agent: *
+Disallow: /assets/favicon/
+Disallow: /assets/css/preloader.css
+
+# Prevent indexing of specific sensitive files or folders
+Disallow: /assets/js/
+Disallow: /admin/
+
+# Allow search engines to index all other parts of the site
+Allow: /assets/css/styles.css
+Allow: /assets/favicon/favicon.ico
+Allow: /assets/favicon/apple-touch-icon.png
+
+# Sitemap for the website (Important for SEO)
+Sitemap: https://ellowdigitals.netlify.app/sitemap.xml

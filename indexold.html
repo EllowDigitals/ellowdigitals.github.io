@@ -1,0 +1,71 @@
+
+    <!-- Preloader Container -->
+    <div id="preloader" class="desktop-preloader"> <!-- Add 'mobile-preloader' for mobile view -->
+        <div class="spinner">
+            <div class="circle"></div>
+        </div>
+        <div class="preloader-text">
+            <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
+        </div>
+    </div>
+
+
+    <script>
+        document.body.style.overflow = "hidden"; // Disable scroll until fully loaded
+
+        const preloader = document.getElementById("preloader");
+        const loadingText = document.querySelector(".preloader-text");
+        const loadingLetters = loadingText ? loadingText.querySelectorAll("span") : [];
+
+        let progress = 0;
+        let interval;
+
+        // Simulate progress
+        const simulateLoading = () => {
+            interval = setInterval(() => {
+                if (progress < 100) {
+                    progress += Math.floor(Math.random() * 10) + 1;
+                    animateLoadingText(progress);
+                } else {
+                    clearInterval(interval);
+                    hidePreloader();
+                }
+            }, 150);
+        };
+
+        // Animate loading text (like a wave/typing)
+        const animateLoadingText = (percent) => {
+            loadingLetters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.opacity = (percent % 100 > index * 12) ? "1" : "0.3";
+                    letter.style.transform = "scale(" + (1 + (percent % 100 > index * 12 ? 0.2 : 0)) + ")";
+                }, index * 50);
+            });
+        };
+
+        // Hide preloader with fade-out
+        const hidePreloader = () => {
+            if (preloader) {
+                preloader.style.transition = "opacity 0.8s ease-out";
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }, 800);
+            }
+        };
+
+        // Failsafe timeout (5 seconds max)
+        setTimeout(() => {
+            if (progress < 100) {
+                clearInterval(interval);
+                hidePreloader();
+            }
+        }, 5000);
+
+        // Real page load handler
+        window.addEventListener("load", () => {
+            simulateLoading();
+        });
+    </script>
+  
