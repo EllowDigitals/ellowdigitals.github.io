@@ -15,8 +15,8 @@ const debounce = (fn, delay = 300) => {
 // 🚀 DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
     console.groupCollapsed("%c🚀 Ellowdigitals Scripts Loaded", "color:#fff; background:#2ecc71; padding:4px 10px; border-radius:6px;");
-    console.log("%cVersion: v5.0", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
-    console.log("%cLast Updated: 2025-04-15", "color:#999; font-size:12px;");
+    console.log("%cVersion: v6.0", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
+    console.log("%cLast Updated: 2025-04-16", "color:#999; font-size:12px;");
     console.groupEnd();
 
     // 📦 Initialize Modules

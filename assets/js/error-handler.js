@@ -1,16 +1,39 @@
 (function () {
-    const version = '1.2.0';
+    const version = '2.0.0';  // Updated version
     const formSubmitEndpoint = 'https://formsubmit.co/ajax/ellowdigitals@gmail.com';
+    const csrfToken = generateCSRFToken(); // CSRF Token for security
 
-    function showVersionInfo() {
-        console.log('%cEllowDigitals - Version: ' + version, 'color: #4CAF50; font-weight: bold; font-size: 16px');
+    // Utility function to generate a CSRF token (optional)
+    function generateCSRFToken() {
+        return Math.random().toString(36).substring(2, 15);
     }
 
+    function showVersionInfo() {
+        console.log('%cEllowDigitals Error Handler - Version: ' + version, 'color: #4CAF50; font-weight: bold; font-size: 16px');
+    }
+
+    // Security Shield with CSRF protection and rate-limiting for sensitive actions
     function securityShield() {
         console.log('%cEllowDigitals Security Shield is Active', 'color: #FF5722; font-weight: bold; font-size: 16px');
 
+        const rateLimit = { actionTimestamps: {}, limit: 5, windowMs: 10000 }; // 5 actions per 10 seconds
         document.addEventListener('click', function (event) {
             if (event.target && event.target.matches('.sensitive-button')) {
+                const currentTime = Date.now();
+                const actionKey = `${event.target.id || event.target.className}`;
+
+                // Rate Limiting Logic
+                if (rateLimit.actionTimestamps[actionKey]) {
+                    const timeWindow = currentTime - rateLimit.actionTimestamps[actionKey];
+                    if (timeWindow < rateLimit.windowMs) {
+                        console.warn('%cAction blocked due to rate-limiting!', 'color: #FFEB3B; background-color: #FF5722; font-weight: bold');
+                        event.preventDefault();
+                        return;
+                    }
+                }
+
+                rateLimit.actionTimestamps[actionKey] = currentTime;
+
                 console.warn('%cSensitive action blocked. Unauthorized access attempt!', 'color: #FFEB3B; background-color: #FF5722; font-weight: bold');
                 sendSecurityLog('Sensitive action blocked', event);
                 event.preventDefault();
@@ -24,11 +47,7 @@
         formData.append('email', 'ellowdigitals@gmail.com');
         formData.append('message', JSON.stringify(errorDetails));
 
-        fetch(formSubmitEndpoint, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => response.json())
+        retryRequest(formSubmitEndpoint, formData, 3)  // Retry up to 3 times on failure
             .then(data => {
                 if (data.success) {
                     console.log('Error details sent to email successfully.');
@@ -39,6 +58,29 @@
             .catch(error => {
                 console.error('Error sending error details:', error);
             });
+    }
+
+    // Retry function for network requests
+    function retryRequest(url, formData, retries) {
+        return new Promise((resolve, reject) => {
+            function attemptRequest(remainingRetries) {
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(resolve)
+                    .catch((error) => {
+                        if (remainingRetries > 0) {
+                            console.warn(`Retrying... Remaining attempts: ${remainingRetries}`);
+                            attemptRequest(remainingRetries - 1);
+                        } else {
+                            reject(error);
+                        }
+                    });
+            }
+            attemptRequest(retries);
+        });
     }
 
     function handleError(error, context = '') {
@@ -56,6 +98,7 @@
         sendErrorToEmail(errorDetails);
     }
 
+    // Function to collect and send new user details with geolocation
     function sendNewUserDetails() {
         if (localStorage.getItem('hasVisited')) {
             console.log('Returning user detected. Skipping new user data sending.');
@@ -72,6 +115,7 @@
                     ip: data.query,
                     device: navigator.userAgent,
                     timestamp: new Date().toISOString(),
+                    csrfToken: csrfToken,  // Attach CSRF token
                 };
 
                 const formData = new FormData();
@@ -79,11 +123,7 @@
                 formData.append('email', 'ellowdigitals@gmail.com');
                 formData.append('message', JSON.stringify(userDetails));
 
-                fetch(formSubmitEndpoint, {
-                    method: 'POST',
-                    body: formData,
-                })
-                    .then(response => response.json())
+                retryRequest(formSubmitEndpoint, formData, 3)
                     .then(data => {
                         if (data.success) {
                             console.log('New user details sent to email successfully.');
@@ -106,11 +146,13 @@
             timestamp: new Date().toISOString(),
             eventDetails: event,
             version: version,
+            csrfToken: csrfToken,  // Attach CSRF token
         };
 
         sendErrorToEmail(securityLog);
     }
 
+    // Global Error and Promise Rejection Handlers
     window.EllowDigitalsShield = {
         showVersionInfo,
         handleError,

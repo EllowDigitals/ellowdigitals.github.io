@@ -171,7 +171,8 @@
                     <!-- Desktop Search Bar -->
                     <form class="d-none d-lg-flex ms-lg-3" role="search" aria-label="Site search">
                         <input type="search" class="form-control search-bar" placeholder="Search..."
-                            aria-label="Search input">
+                            aria-label="Search input" id="search-input">
+                        <div id="search-suggestions" class="search-suggestions"></div>
                     </form>
                 </div>
             </div>
@@ -648,7 +649,9 @@
                     </div>
                 </div>
             </div>
-        </section><!-- Contact Us Section -->
+        </section>
+        <!-- Contact Us Section -->
+        <!-- Contact Section -->
         <section id="contact" class="section py-5" data-theme>
             <div class="container">
                 <div class="row justify-content-center">
@@ -656,18 +659,24 @@
                         <h2 class="section-title mb-5">Get in Touch</h2>
                     </div>
                 </div>
+
+                <!-- Honeypot Field -->
+                <div style="display: none;">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" autocomplete="off">
+                </div>
+
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6">
                         <form id="contactForm" action="https://formsubmit.co/ellowdigitals@gmail.com" method="POST"
-                            class="contact-form">
+                            class="contact-form" novalidate>
                             <div class="form-group mb-4">
                                 <label for="name" class="form-label">Your Name</label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" class="form-control" id="name" name="name" autocomplete="name"
-                                        placeholder="Enter your name" required />
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Enter your name" required>
                                 </div>
-                                <div class="invalid-feedback">Please enter your name.</div>
                             </div>
 
                             <div class="form-group mb-4">
@@ -675,27 +684,25 @@
                                 <div class="input-wrapper">
                                     <i class="fas fa-envelope"></i>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        autocomplete="email" placeholder="Enter your email" required />
+                                        placeholder="Enter your email" required>
                                 </div>
-                                <div class="invalid-feedback">Please enter a valid email address.</div>
                             </div>
 
                             <div class="form-group mb-4">
                                 <label for="message" class="form-label">Message</label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-comment"></i>
-                                    <textarea class="form-control" id="message" rows="5" name="message"
-                                        autocomplete="off" placeholder="Your message" required></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="5"
+                                        placeholder="Your message" required></textarea>
                                 </div>
-                                <div class="invalid-feedback">Please enter your message.</div>
                             </div>
 
-                            <!-- Hidden inputs for FormSubmit -->
-                            <input type="hidden" name="_template" value="table" />
-                            <input type="hidden" name="_subject" value="EllowDigitals: New Submission!" />
-                            <input type="hidden" name="_captcha" value="false" />
+                            <!-- FormSubmit Hidden Fields -->
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="EllowDigitals: New Submission!">
+                            <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next"
-                                value="https://ellowdigitals.netlify.app/assets/success.html" />
+                                value="https://ellowdigitals.netlify.app/assets/success.html">
 
                             <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </form>
@@ -849,6 +856,8 @@
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/error-handler.js" defer></script>
     <script src="/service-worker.js" defer></script>
+    <script src="assets/js/search.js" defer></script>
+    <script src="/assets/js/security.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

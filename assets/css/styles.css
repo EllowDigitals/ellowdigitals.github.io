@@ -305,6 +305,26 @@ button:hover {
     outline: none;
 }
 
+.search-suggestions {
+    position: absolute;
+    background-color: var(--color-bg);
+    width: 100%;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-suggestions div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-suggestions div:hover {
+    background-color: var(--color-primary);
+    color: #000;
+}
+
 /* === Hero Section === */
 .hero-video-wrapper {
     position: absolute;
