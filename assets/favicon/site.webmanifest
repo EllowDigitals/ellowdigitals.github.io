@@ -1,7 +1,7 @@
 {
   "name": "EllowDigitals",
   "short_name": "EllowDigitals",
-  "description": "EllowDigitals empowers businesses with cutting-edge digital transformation solutions.",
+  "description": "Empowering businesses with cutting-edge digital transformation solutions that drive success.",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#fcc62d",
@@ -33,5 +33,12 @@
       "type": "image/x-icon"
     }
   ],
-  "scope": "/"
+  "scope": "/",
+  "orientation": "portrait",
+  "lang": "en",
+  "display_override": [
+    "window-controls-overlay",
+    "fullscreen"
+  ],
+  "prefer_related_applications": false
 }

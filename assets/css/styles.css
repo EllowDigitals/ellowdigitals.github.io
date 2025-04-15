@@ -2487,3 +2487,43 @@ body {
 #connection-status.show {
     transition: all 0.5s ease;
 }
+
+/* Webkit-specific scroll styling for all browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Custom width for the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    /* Scrollbar thumb color */
+    border-radius: 10px;
+    /* Rounded edges for the thumb */
+    border: 2px solid var(--color-surface);
+    /* Border to make thumb visible */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-hover);
+    /* Thumb color when hovered */
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--color-surface-alt);
+    /* Track color */
+    border-radius: 10px;
+    /* Rounded edges for the track */
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: var(--color-surface);
+    /* Inner track color */
+}
+
+/* Styling for custom scrollbar in Mozilla Firefox */
+* {
+    scrollbar-width: thin;
+    /* Thin scrollbar in Firefox */
+    scrollbar-color: var(--color-primary) var(--color-surface-alt);
+    /* Custom scrollbar colors */
+}
