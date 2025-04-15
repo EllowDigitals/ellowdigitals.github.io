@@ -2391,6 +2391,7 @@ strong {
     padding: 0.5rem 0;
 }
 
+
 /* General Styling for Connection Status Bar */
 #connection-status {
     position: fixed;
@@ -2465,12 +2466,6 @@ strong {
     text-transform: capitalize;
     padding: 10px 20px;
     /* Adjust padding for a more balanced look */
-}
-
-/* When the page is scrolled, ensure the element stays fixed */
-body {
-    margin: 0;
-    padding: 0;
 }
 
 /* Media Queries for better responsiveness */

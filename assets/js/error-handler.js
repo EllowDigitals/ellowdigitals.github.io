@@ -1,13 +1,11 @@
 (function () {
-    const version = '1.2.0';  // Version of the site
-    const formSubmitEndpoint = 'https://formsubmit.co/ajax/ellowdigitals@gmail.com';  // FormSubmit API endpoint for sending data
+    const version = '1.2.0';
+    const formSubmitEndpoint = 'https://formsubmit.co/ajax/ellowdigitals@gmail.com';
 
-    // Display version info in console
     function showVersionInfo() {
         console.log('%cEllowDigitals - Version: ' + version, 'color: #4CAF50; font-weight: bold; font-size: 16px');
     }
 
-    // Prevent unauthorized actions (security shield)
     function securityShield() {
         console.log('%cEllowDigitals Security Shield is Active', 'color: #FF5722; font-weight: bold; font-size: 16px');
 
@@ -15,12 +13,11 @@
             if (event.target && event.target.matches('.sensitive-button')) {
                 console.warn('%cSensitive action blocked. Unauthorized access attempt!', 'color: #FFEB3B; background-color: #FF5722; font-weight: bold');
                 sendSecurityLog('Sensitive action blocked', event);
-                event.preventDefault(); // Prevent the action from taking place
+                event.preventDefault();
             }
         });
     }
 
-    // Send error details via FormSubmit to Gmail
     function sendErrorToEmail(errorDetails) {
         const formData = new FormData();
         formData.append('name', 'Website Error');
@@ -44,34 +41,29 @@
             });
     }
 
-    // Handle application errors and send reports
     function handleError(error, context = '') {
         const errorDetails = {
-            message: error.message || 'Unknown error',
-            stack: error.stack || 'No stack trace available',
+            message: error?.message || error?.toString() || 'Unknown error',
+            stack: error?.stack || 'No stack trace available',
             version: version,
             context: context || 'No specific context provided',
             timestamp: new Date().toISOString(),
-            url: window.location.href || 'Unknown URL',
-            userAgent: navigator.userAgent || 'Unknown user agent',
+            url: window.location.href,
+            userAgent: navigator.userAgent,
         };
 
         console.error('%cError Details:', 'color: #D32F2F; font-weight: bold; font-size: 16px', errorDetails);
-        sendErrorToEmail(errorDetails); // Send error to email
+        sendErrorToEmail(errorDetails);
     }
 
-    // Fetch user details and send them to Gmail (geo-location, device info)
     function sendNewUserDetails() {
-        // Check if user has visited before using localStorage
         if (localStorage.getItem('hasVisited')) {
             console.log('Returning user detected. Skipping new user data sending.');
-            return; // Don't send data for returning users
+            return;
         }
 
-        // Set flag in localStorage to indicate user has visited
         localStorage.setItem('hasVisited', 'true');
 
-        // Retrieve location and device info
         fetch('http://ip-api.com/json')
             .then(response => response.json())
             .then(data => {
@@ -82,7 +74,6 @@
                     timestamp: new Date().toISOString(),
                 };
 
-                // Send new user details via FormSubmit
                 const formData = new FormData();
                 formData.append('name', 'New User');
                 formData.append('email', 'ellowdigitals@gmail.com');
@@ -109,7 +100,6 @@
             });
     }
 
-    // Send security log details
     function sendSecurityLog(message, event) {
         const securityLog = {
             message: message,
@@ -118,22 +108,34 @@
             version: version,
         };
 
-        sendErrorToEmail(securityLog);  // Use the same email method for security logs
+        sendErrorToEmail(securityLog);
     }
 
-    // Initialize EllowDigitals Shield
     window.EllowDigitalsShield = {
-        showVersionInfo: showVersionInfo,
-        handleError: handleError,
-        securityShield: securityShield,
-        sendNewUserDetails: sendNewUserDetails,
-        sendSecurityLog: sendSecurityLog
+        showVersionInfo,
+        handleError,
+        securityShield,
+        sendNewUserDetails,
+        sendSecurityLog
     };
 
-    // Trigger on page load
     window.addEventListener('load', function () {
-        showVersionInfo();  // Display version info in console
-        securityShield();   // Enable security shield
-        sendNewUserDetails(); // Track new user details (only once)
+        showVersionInfo();
+        securityShield();
+        sendNewUserDetails();
     });
+
+    // ✅ Catch ALL uncaught runtime errors globally
+    window.onerror = function (message, source, lineno, colno, error) {
+        const errorObj = error || {
+            message: message,
+            stack: `at ${source}:${lineno}:${colno}`
+        };
+        EllowDigitalsShield.handleError(errorObj, 'Global JS Error');
+    };
+
+    // ✅ Catch ALL uncaught promise rejections globally
+    window.onunhandledrejection = function (event) {
+        EllowDigitalsShield.handleError(event.reason || { message: 'Unhandled rejection with no reason' }, 'Unhandled Promise Rejection');
+    };
 })();

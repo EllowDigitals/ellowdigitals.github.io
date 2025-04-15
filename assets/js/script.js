@@ -12,194 +12,178 @@ const debounce = (fn, delay = 300) => {
     };
 };
 
-// 🚀 Init All on DOM Ready
+// 🚀 DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
     console.groupCollapsed("%c🚀 Ellowdigitals Scripts Loaded", "color:#fff; background:#2ecc71; padding:4px 10px; border-radius:6px;");
-    console.log("%cVersion: v4.6", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
-    console.log("%cLast Updated: 2025-04-11", "color:#999; font-size:12px;");
+    console.log("%cVersion: v5.0", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
+    console.log("%cLast Updated: 2025-04-15", "color:#999; font-size:12px;");
     console.groupEnd();
 
-    // 📦 Core Initializations
-    initEnrollForm();                // 📝 Enroll Form UX (v3.2)
-    updateFooterYear();              // 📆 Footer Year Auto (v2.0)
-    checkLazyLoadSupport();          // 💤 Lazy Loading Check (v2.1)
-    ensureMetaDescription();         // 🧠 Meta Tag Fallback
-    monitorConnectionStatus();       // 🔌 Connection Monitor (v3.8)
-    handleNavbarLinks();             // 📱 Navbar Mobile Toggle (v1.0)
+    // 📦 Initialize Modules
+    updateFooterYear();
+    checkLazyLoadSupport();
+    ensureMetaDescription();
+    monitorConnectionStatus();
+    handleNavbarLinks();
+    initEnrollForm();
 });
 
-// Form Validation & UX for the Contact Form
+// 📝 Enroll Form Validation (v3.5)
 function initEnrollForm() {
     const form = $("#contactForm");
-    if (!form) return console.warn("[EnrollForm] Form element not found.");
-
     const nameInput = $("#name");
     const emailInput = $("#email");
     const messageInput = $("#message");
     const submitBtn = $("button.btn");
 
-    if (!nameInput || !emailInput || !messageInput || !submitBtn) {
-        console.error("[EnrollForm] Required fields missing in DOM.");
+    if (!form || !nameInput || !emailInput || !messageInput || !submitBtn) {
+        console.warn("[EnrollForm] Required form fields missing.");
         return;
     }
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        handleFormValidation(nameInput, emailInput, messageInput, submitBtn);
+
+        // Reset state
+        [nameInput, emailInput, messageInput].forEach(resetFieldError);
+        let hasError = false;
+
+        // Validations
+        if (!nameInput.value.trim()) {
+            showError(nameInput, "Please enter your name.");
+            hasError = true;
+        }
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        if (!emailRegex.test(emailInput.value)) {
+            showError(emailInput, "Please enter a valid Gmail address.");
+            hasError = true;
+        }
+
+        if (!messageInput.value.trim()) {
+            showError(messageInput, "Please enter your message.");
+            hasError = true;
+        }
+
+        if (hasError) return;
+
+        // UX feedback
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        // Simulated submission
+        setTimeout(() => {
+            alert("Form submitted successfully!");
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit";
+        }, 1500);
     });
-}
-
-function handleFormValidation(nameInput, emailInput, messageInput, submitBtn) {
-    // Reset previous errors
-    [nameInput, emailInput, messageInput].forEach(field => resetFieldError(field));
-
-    let hasError = false;
-
-    // Name Validation
-    if (!nameInput.value.trim()) {
-        showError(nameInput, "Please enter your name.");
-        hasError = true;
-    }
-
-    // Email Validation (Improved Regex)
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if (!emailRegex.test(emailInput.value)) {
-        showError(emailInput, "Please enter a valid Gmail address.");
-        hasError = true;
-    }
-
-    // Message Validation
-    if (!messageInput.value.trim()) {
-        showError(messageInput, "Please enter your message.");
-        hasError = true;
-    }
-
-    if (hasError) return;
-
-    // UX feedback
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    // Simulate form submission (for now)
-    setTimeout(() => {
-        alert("Form submitted successfully!");
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-    }, 1500); // Simulate a delay
 }
 
 function showError(field, message) {
     field.classList.add("input-error", "shake");
-    const errorMsg = document.createElement("div");
-    errorMsg.className = "form-error";
-    errorMsg.textContent = message;
-    field.insertAdjacentElement("afterend", errorMsg);
+    const error = document.createElement("div");
+    error.className = "form-error";
+    error.textContent = message;
+    field.insertAdjacentElement("afterend", error);
     setTimeout(() => field.classList.remove("shake"), 500);
 }
 
 function resetFieldError(field) {
     field.classList.remove("input-error", "shake");
-    const errorElement = field.nextElementSibling;
-    if (errorElement && errorElement.classList.contains("form-error")) {
-        errorElement.remove();
+    const error = field.nextElementSibling;
+    if (error && error.classList.contains("form-error")) error.remove();
+}
+
+// 📆 Dynamic Footer Year
+function updateFooterYear() {
+    const footerYear = $("#footer-year");
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
     }
 }
 
-// Footer Year Auto Update v2.0
-function updateFooterYear() {
-    const footerYear = $(".footer-year");
-    if (footerYear) footerYear.textContent = new Date().getFullYear();
-}
-
-// 💤 Lazy Load Check v2.1
+// 💤 Lazy Loading Support Check
 function checkLazyLoadSupport() {
-    if (!("loading" in HTMLImageElement.prototype)) {
-        console.warn("[LazyLoad] Native lazy loading not supported.");
+    if ("loading" in HTMLImageElement.prototype) {
+        console.info("[LazyLoad] Native support enabled.");
     } else {
-        console.info("[LazyLoad] Native lazy loading supported.");
+        console.warn("[LazyLoad] Native lazy loading not supported.");
     }
 }
 
 // 🧠 Meta Description Fallback
 function ensureMetaDescription() {
-    const metaTag = document.querySelector("meta[name='description']");
-    if (!metaTag) {
-        const meta = document.createElement("meta");
-        meta.name = "description";
-        meta.content = "Default description for the site.";
-        document.head.appendChild(meta);
-        console.warn("[Meta Description] Fallback applied.");
+    if (!document.querySelector("meta[name='description']")) {
+        const fallbackMeta = document.createElement("meta");
+        fallbackMeta.name = "description";
+        fallbackMeta.content = "Default description for the site.";
+        document.head.appendChild(fallbackMeta);
+        console.warn("[Meta] Description meta tag was missing. Fallback applied.");
     }
 }
-
-// 🔌 Connection Monitor v3.8
+// 🔌 Responsive & Animated Connection Status Notifier v3.0
 function monitorConnectionStatus() {
-    const statusElement = document.createElement("div");
-    statusElement.id = "connection-status";
-    document.body.appendChild(statusElement);
+    const statusEl = document.createElement("div");
+    statusEl.id = "connection-status";
+    document.body.appendChild(statusEl);
 
-    // Check if the user is visiting for the first time
-    const isFirstVisit = localStorage.getItem('isFirstVisit') === null;
-
-    // Show Welcome Message for First Time Visits
-    if (isFirstVisit) {
-        localStorage.setItem('isFirstVisit', 'false');
-        statusElement.textContent = "Welcome to our website!";
-        statusElement.classList.add("welcome");
-        displayConnectionStatus(statusElement);
-        setTimeout(() => statusElement.style.display = "none", 5000);
-    } else {
-        displayConnectionStatus(statusElement);
-    }
-
-    // Function to Update Connection Status
-    function displayConnectionStatus(statusElement) {
-        const updateConnectionStatus = () => {
-            if (navigator.onLine) {
-                statusElement.textContent = "You are now online.";
-                statusElement.classList.replace("offline", "online");
-                localStorage.setItem('lastStatus', 'online');
-            } else {
-                statusElement.textContent = "You are offline. Some features may not work.";
-                statusElement.classList.replace("online", "offline");
-                localStorage.setItem('lastStatus', 'offline');
-            }
-
-            statusElement.style.display = "block";
-            statusElement.classList.add("show");
-        };
-
-        const lastStatus = localStorage.getItem('lastStatus');
-        if (lastStatus) {
-            statusElement.textContent = `You were previously ${lastStatus}.`;
-            statusElement.classList.add(lastStatus);
-        } else {
-            updateConnectionStatus();
-        }
-
-        window.addEventListener("online", updateConnectionStatus);
-        window.addEventListener("offline", updateConnectionStatus);
+    const showStatus = (message, type = "online") => {
+        statusEl.textContent = message;
+        statusEl.className = ""; // Reset all classes
+        statusEl.classList.add("show", type);
+        statusEl.style.display = "block";
 
         setTimeout(() => {
-            statusElement.style.display = "none";
-            statusElement.classList.remove("show");
+            statusEl.classList.remove("show");
+            setTimeout(() => {
+                statusEl.style.display = "none";
+            }, 300); // Match the CSS transition
         }, 7000);
+    };
+
+    // Show welcome message on first visit
+    const isFirstVisit = localStorage.getItem("isFirstVisit") === null;
+    if (isFirstVisit) {
+        localStorage.setItem("isFirstVisit", "false");
+        showStatus("Welcome to our website!", "welcome");
+    } else {
+        updateStatus(navigator.onLine);
+    }
+
+    // Connection change listeners
+    window.addEventListener("online", () => updateStatus(true));
+    window.addEventListener("offline", () => updateStatus(false));
+
+    function updateStatus(isOnline) {
+        const message = isOnline
+            ? "You are now online."
+            : "You are offline. Some features may not work.";
+        const type = isOnline ? "online" : "offline";
+        showStatus(message, type);
+        localStorage.setItem("lastStatus", type);
     }
 }
 
-// 📱 Navbar Mobile Toggle (v1.0)
-function handleNavbarLinks() {
-    const navLinks = $$("#navbarNav .nav-link");
-    const navbarToggler = $(".navbar-toggler");
-    const navbarCollapse = $("#navbarNav");
 
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            // Close the navbar on mobile if open
-            if (navbarCollapse.classList.contains("show")) {
-                navbarToggler.click();
-            }
-        });
+
+// 📱 Optimized Navbar Link Handler (v2.5)
+function handleNavbarLinks() {
+    const navbar = $("#navbar");
+    const navbarCollapse = $("#navbarNav");
+    const navbarToggler = $(".navbar-toggler");
+
+    if (!navbar || !navbarCollapse || !navbarToggler) return;
+
+    navbar.addEventListener("click", (e) => {
+        const link = e.target.closest(".nav-link");
+
+        if (!link) return;
+        if (link.classList.contains("dropdown-toggle")) return;
+
+        if (navbarCollapse.classList.contains("show")) {
+            navbarToggler.click();
+        }
     });
 }

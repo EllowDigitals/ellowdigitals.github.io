@@ -11,6 +11,8 @@
 
     <!-- Title -->
     <title>EllowDigitals | Empowering Digital Transformation for Businesses</title>
+    <meta name="license" content="MIT License - © 2024 EllowDigitals India">
+    <link rel="license" href="license.txt">
 
     <!-- SEO Meta Tags -->
     <meta name="description"
@@ -88,7 +90,15 @@
 </head>
 
 <body>
-
+    <!-- Preloader Container -->
+    <div id="preloader" class="desktop-preloader"> <!-- Add 'mobile-preloader' for mobile view -->
+        <div class="spinner">
+            <div class="circle"></div>
+        </div>
+        <div class="preloader-text">
+            <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
+        </div>
+    </div>
 
     <!-- Scroll Progress Bar -->
     <div id="scrollProgressContainer" class="progress-container" aria-hidden="true">
@@ -803,14 +813,72 @@
 
             <!-- Footer Bottom Section -->
             <div class="footer-bottom">
-                <p>&copy; 2024 EllowDigitals Enterprise. All Rights Reserved.</p>
+                <p>&copy; <span id="footer-year">2024</span> EllowDigitals Enterprise. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
     <!-- External JS Libraries (Bootstrap 5.3) -->
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/error-handler.js" defer></script>
     <script src="/service-worker.js" defer></script>
+    <script>
+        document.body.style.overflow = "hidden"; // Disable scroll until fully loaded
+
+        const preloader = document.getElementById("preloader");
+        const loadingText = document.querySelector(".preloader-text");
+        const loadingLetters = loadingText ? loadingText.querySelectorAll("span") : [];
+
+        let progress = 0;
+        let interval;
+
+        // Simulate loading progress
+        const simulateLoading = () => {
+            interval = setInterval(() => {
+                if (progress < 100) {
+                    progress += Math.floor(Math.random() * 10) + 1;
+                    animateLoadingText(progress);
+                } else {
+                    clearInterval(interval);
+                    hidePreloader();
+                }
+            }, 150);
+        };
+
+        // Simple fade-in loading animation (no electric/fire effect)
+        const animateLoadingText = (percent) => {
+            loadingLetters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.opacity = (percent > index * 12) ? "1" : "0.3";
+                }, index * 40);
+            });
+        };
+
+        // Hide preloader with fade-out
+        const hidePreloader = () => {
+            if (preloader) {
+                preloader.style.transition = "opacity 0.8s ease-out";
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }, 800);
+            }
+        };
+
+        // Failsafe in case loading doesn't reach 100%
+        setTimeout(() => {
+            if (progress < 100) {
+                clearInterval(interval);
+                hidePreloader();
+            }
+        }, 5000);
+
+        // Start loading when page is fully loaded
+        window.addEventListener("load", simulateLoading);
+    </script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
