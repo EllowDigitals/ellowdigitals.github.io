@@ -205,7 +205,7 @@ function monitorConnectionStatus() {
     const isFirstVisit = localStorage.getItem("isFirstVisit") === null;
     if (isFirstVisit) {
         localStorage.setItem("isFirstVisit", "false");
-        showStatus("Welcome to ElloDigitals!", "welcome");
+        showStatus("Welcome to EllowDigitals!", "welcome");
     } else {
         updateStatus(navigator.onLine); // Check initial connection status
     }
