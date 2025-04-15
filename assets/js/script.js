@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFooterYear();
     checkLazyLoadSupport();
     ensureMetaDescription();
-    monitorConnectionStatus();
     handleNavbarLinks();
     initEnrollForm();
 });
@@ -123,46 +122,106 @@ function ensureMetaDescription() {
         console.warn("[Meta] Description meta tag was missing. Fallback applied.");
     }
 }
-// 🔌 Responsive & Animated Connection Status Notifier v3.0
+
+// Preloader Logic
+document.body.style.overflow = "hidden"; // Disable scroll until fully loaded
+
+const preloader = document.getElementById("preloader");
+const loadingText = document.querySelector(".preloader-text");
+const loadingLetters = loadingText ? loadingText.querySelectorAll("span") : [];
+
+let progress = 0;
+let interval;
+
+// Simulate loading progress
+const simulateLoading = () => {
+    interval = setInterval(() => {
+        if (progress < 100) {
+            progress += Math.floor(Math.random() * 10) + 1;
+            animateLoadingText(progress);
+        } else {
+            clearInterval(interval);
+            hidePreloader(); // Hide preloader once loading is complete
+        }
+    }, 150);
+};
+
+// Simple fade-in loading animation
+const animateLoadingText = (percent) => {
+    loadingLetters.forEach((letter, index) => {
+        setTimeout(() => {
+            letter.style.opacity = (percent > index * 12) ? "1" : "0.3";
+        }, index * 40);
+    });
+};
+
+// Hide preloader with fade-out effect
+const hidePreloader = () => {
+    if (preloader) {
+        preloader.style.transition = "opacity 0.8s ease-out";
+        preloader.style.opacity = "0";
+        setTimeout(() => {
+            preloader.style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scroll again
+            monitorConnectionStatus(); // Start the connection monitor after preloader is hidden
+        }, 800); // Wait for fade-out transition before starting the connection monitor
+    }
+};
+
+// Failsafe in case loading doesn't reach 100%
+setTimeout(() => {
+    if (progress < 100) {
+        clearInterval(interval);
+        hidePreloader();
+    }
+}, 5000);
+
+// Start loading when page is fully loaded
+window.addEventListener("load", simulateLoading);
+
+// Function to monitor the connection status and update the UI
 function monitorConnectionStatus() {
     const statusEl = document.createElement("div");
-    statusEl.id = "connection-status"; // General Styling for Connection Status Bar
-    document.body.appendChild(statusEl);
+    statusEl.id = "connection-status"; // Create a status element
+    document.body.appendChild(statusEl); // Add the element to the body
 
+    // Function to show the connection status with the given message and type
     const showStatus = (message, type = "online") => {
-        statusEl.textContent = message;
-        statusEl.className = ""; // Reset all classes
-        statusEl.classList.add("show", type);
-        statusEl.style.display = "block";
+        statusEl.textContent = message; // Set the message text
+        statusEl.className = ""; // Reset any previous status classes
+        statusEl.classList.add("show", type); // Add the active class and the status class
+        statusEl.style.display = "block"; // Ensure it is visible
 
+        // Hide the status after a timeout
         setTimeout(() => {
-            statusEl.classList.remove("show");
+            statusEl.classList.remove("show"); // Fade out the status
             setTimeout(() => {
-                statusEl.style.display = "none";
-            }, 300); // Match the CSS transition
-        }, 7000);
+                statusEl.style.display = "none"; // Remove the element from view after fade-out
+            }, 300); // Match the CSS transition duration
+        }, 3000); // Show the message for 3 seconds
     };
 
     // Show welcome message on first visit
     const isFirstVisit = localStorage.getItem("isFirstVisit") === null;
     if (isFirstVisit) {
         localStorage.setItem("isFirstVisit", "false");
-        showStatus("Welcome to our website!", "welcome");
+        showStatus("Welcome to ElloDigitals!", "welcome");
     } else {
-        updateStatus(navigator.onLine);
+        updateStatus(navigator.onLine); // Check initial connection status
     }
 
-    // Connection change listeners
+    // Event listeners for connection change
     window.addEventListener("online", () => updateStatus(true));
     window.addEventListener("offline", () => updateStatus(false));
 
+    // Function to update the status based on whether online or offline
     function updateStatus(isOnline) {
         const message = isOnline
-            ? "You are now online."
+            ? "You are now online. All features are available."
             : "You are offline. Some features may not work.";
         const type = isOnline ? "online" : "offline";
         showStatus(message, type);
-        localStorage.setItem("lastStatus", type);
+        localStorage.setItem("lastStatus", type); // Store last connection status
     }
 }
 

@@ -2392,104 +2392,71 @@ strong {
 }
 
 
-/* General Styling for Connection Status Bar */
+/* === Connection Status Notifier === */
 #connection-status {
     position: fixed;
-    bottom: 0;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    /* Center horizontally */
-    width: auto;
-    padding: 12px 24px;
-    text-align: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
     font-size: var(--font-size-sm);
+    font-weight: 600;
     color: #fff;
-    border-radius: 20px;
-    background-color: var(--color-primary);
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    opacity: 0;
-    transform: translateY(100%);
+    background: var(--color-primary);
+    box-shadow: var(--shadow);
     z-index: 9999;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    margin-bottom: 12px;
-    word-wrap: break-word;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
-/* Sliding Animation */
+/* Show the status when it's active */
 #connection-status.show {
+    display: block;
     opacity: 1;
-    transform: translateY(0);
-    /* Slide effect */
+    transform: translateX(-50%) translateY(0);
 }
 
-/* Online Status Styling */
+/* Online Status */
 #connection-status.online {
-    background-color: var(--color-success);
-    font-weight: bold;
+    background: var(--color-success);
 }
 
-/* Offline Status Styling */
+/* Offline Status */
 #connection-status.offline {
-    background-color: var(--color-danger);
-    font-weight: bold;
+    background: var(--color-danger);
 }
 
-/* Welcome Message Styling */
-#connection-status.welcome {
-    background-color: var(--color-info);
-    font-size: var(--font-size-md);
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 25px;
+/* Low Battery Status */
+#connection-status.low-battery {
+    background: var(--color-warning);
 }
 
-/* Shared Styling for rounded corners and padding */
-#connection-status.welcome,
-#connection-status.online,
-#connection-status.offline {
-    border-radius: 25px;
-    font-size: var(--font-size-sm);
-    text-transform: capitalize;
-    padding: 10px 20px;
-}
-
-/* Media Queries for better responsiveness */
-
-/* Mobile View (smaller screens) */
+/* === Media Queries for Responsiveness === */
 @media screen and (max-width: 600px) {
     #connection-status {
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-sm);
         width: 90%;
         padding: 8px 16px;
     }
-
-    #connection-status.welcome {
-        font-size: var(--font-size-md);
-    }
 }
 
-/* Tablet View (medium screens) */
 @media screen and (max-width: 768px) {
     #connection-status {
-        font-size: var(--font-size-sm);
         width: 85%;
     }
 }
 
-/* Desktop View (larger screens) */
 @media screen and (min-width: 1024px) {
     #connection-status {
-        font-size: var(--font-size-md);
         width: 60%;
         padding: 12px 30px;
     }
 }
 
-/* Responsive Behavior for Even Larger Screens (very wide screens) */
 @media screen and (min-width: 1440px) {
     #connection-status {
-        font-size: var(--font-size-lg);
         width: 50%;
     }
 }

@@ -822,63 +822,6 @@
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/error-handler.js" defer></script>
     <script src="/service-worker.js" defer></script>
-    <script>
-        document.body.style.overflow = "hidden"; // Disable scroll until fully loaded
-
-        const preloader = document.getElementById("preloader");
-        const loadingText = document.querySelector(".preloader-text");
-        const loadingLetters = loadingText ? loadingText.querySelectorAll("span") : [];
-
-        let progress = 0;
-        let interval;
-
-        // Simulate loading progress
-        const simulateLoading = () => {
-            interval = setInterval(() => {
-                if (progress < 100) {
-                    progress += Math.floor(Math.random() * 10) + 1;
-                    animateLoadingText(progress);
-                } else {
-                    clearInterval(interval);
-                    hidePreloader();
-                }
-            }, 150);
-        };
-
-        // Simple fade-in loading animation (no electric/fire effect)
-        const animateLoadingText = (percent) => {
-            loadingLetters.forEach((letter, index) => {
-                setTimeout(() => {
-                    letter.style.opacity = (percent > index * 12) ? "1" : "0.3";
-                }, index * 40);
-            });
-        };
-
-        // Hide preloader with fade-out
-        const hidePreloader = () => {
-            if (preloader) {
-                preloader.style.transition = "opacity 0.8s ease-out";
-                preloader.style.opacity = "0";
-                setTimeout(() => {
-                    preloader.style.display = "none";
-                    document.body.style.overflow = "auto";
-                }, 800);
-            }
-        };
-
-        // Failsafe in case loading doesn't reach 100%
-        setTimeout(() => {
-            if (progress < 100) {
-                clearInterval(interval);
-                hidePreloader();
-            }
-        }, 5000);
-
-        // Start loading when page is fully loaded
-        window.addEventListener("load", simulateLoading);
-    </script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
