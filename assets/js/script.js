@@ -1,9 +1,9 @@
 "use strict";
 
 // 💡 Utility Shortcuts
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
-const qs = (sel, parent = document) => parent.querySelector(sel);
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
+const qs = (selector, parent = document) => parent.querySelector(selector);
 const debounce = (fn, delay = 300) => {
     let timer;
     return (...args) => {
@@ -25,17 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
     checkLazyLoadSupport();          // 💤 Lazy Loading Check (v2.1)
     ensureMetaDescription();         // 🧠 Meta Tag Fallback
     monitorConnectionStatus();       // 🔌 Connection Monitor (v3.8)
+    handleNavbarLinks();             // 📱 Navbar Mobile Toggle (v1.0)
 });
 
 // Form Validation & UX for the Contact Form
 function initEnrollForm() {
-    const form = document.querySelector("#contactForm");
+    const form = $("#contactForm");
     if (!form) return console.warn("[EnrollForm] Form element not found.");
 
-    const nameInput = form.querySelector("#name");
-    const emailInput = form.querySelector("#email");
-    const messageInput = form.querySelector("#message");
-    const submitBtn = form.querySelector("button.btn");
+    const nameInput = $("#name");
+    const emailInput = $("#email");
+    const messageInput = $("#message");
+    const submitBtn = $("button.btn");
 
     if (!nameInput || !emailInput || !messageInput || !submitBtn) {
         console.error("[EnrollForm] Required fields missing in DOM.");
@@ -50,10 +51,7 @@ function initEnrollForm() {
 
 function handleFormValidation(nameInput, emailInput, messageInput, submitBtn) {
     // Reset previous errors
-    [nameInput, emailInput, messageInput].forEach(field => {
-        field.classList.remove("input-error", "shake");
-        field.nextElementSibling?.classList.contains("form-error") && field.nextElementSibling.remove();
-    });
+    [nameInput, emailInput, messageInput].forEach(field => resetFieldError(field));
 
     let hasError = false;
 
@@ -64,8 +62,8 @@ function handleFormValidation(nameInput, emailInput, messageInput, submitBtn) {
     }
 
     // Email Validation (Improved Regex)
-    const isValidEmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput.value);
-    if (!isValidEmail) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!emailRegex.test(emailInput.value)) {
         showError(emailInput, "Please enter a valid Gmail address.");
         hasError = true;
     }
@@ -100,12 +98,18 @@ function showError(field, message) {
     setTimeout(() => field.classList.remove("shake"), 500);
 }
 
+function resetFieldError(field) {
+    field.classList.remove("input-error", "shake");
+    const errorElement = field.nextElementSibling;
+    if (errorElement && errorElement.classList.contains("form-error")) {
+        errorElement.remove();
+    }
+}
+
 // Footer Year Auto Update v2.0
 function updateFooterYear() {
-    const footerYear = document.querySelector(".footer-year");
-    if (footerYear) {
-        footerYear.textContent = new Date().getFullYear();
-    }
+    const footerYear = $(".footer-year");
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
 }
 
 // 💤 Lazy Load Check v2.1
@@ -151,30 +155,25 @@ function monitorConnectionStatus() {
 
     // Function to Update Connection Status
     function displayConnectionStatus(statusElement) {
-        function updateConnectionStatus() {
+        const updateConnectionStatus = () => {
             if (navigator.onLine) {
                 statusElement.textContent = "You are now online.";
-                statusElement.classList.remove("offline");
-                statusElement.classList.add("online");
+                statusElement.classList.replace("offline", "online");
                 localStorage.setItem('lastStatus', 'online');
             } else {
                 statusElement.textContent = "You are offline. Some features may not work.";
-                statusElement.classList.remove("online");
-                statusElement.classList.add("offline");
+                statusElement.classList.replace("online", "offline");
                 localStorage.setItem('lastStatus', 'offline');
             }
 
             statusElement.style.display = "block";
             statusElement.classList.add("show");
-        }
+        };
 
         const lastStatus = localStorage.getItem('lastStatus');
-        if (lastStatus === 'online') {
-            statusElement.textContent = "You were previously online.";
-            statusElement.classList.add("online");
-        } else if (lastStatus === 'offline') {
-            statusElement.textContent = "You were previously offline.";
-            statusElement.classList.add("offline");
+        if (lastStatus) {
+            statusElement.textContent = `You were previously ${lastStatus}.`;
+            statusElement.classList.add(lastStatus);
         } else {
             updateConnectionStatus();
         }
@@ -187,4 +186,20 @@ function monitorConnectionStatus() {
             statusElement.classList.remove("show");
         }, 7000);
     }
+}
+
+// 📱 Navbar Mobile Toggle (v1.0)
+function handleNavbarLinks() {
+    const navLinks = $$("#navbarNav .nav-link");
+    const navbarToggler = $(".navbar-toggler");
+    const navbarCollapse = $("#navbarNav");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            // Close the navbar on mobile if open
+            if (navbarCollapse.classList.contains("show")) {
+                navbarToggler.click();
+            }
+        });
+    });
 }
