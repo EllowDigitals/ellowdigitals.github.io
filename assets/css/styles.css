@@ -2391,19 +2391,22 @@ strong {
     padding: 0.5rem 0;
 }
 
-/* Connection Status Bar Styling */
+/* General Styling for Connection Status Bar */
 #connection-status {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center the status bar */
+    width: auto;
+    padding: 10px 20px;
     text-align: center;
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-sm);
     color: #fff;
-    background-color: #28a745;
-    /* Default green for online status */
-    border-radius: var(--radius) 0 0 0;
+    border-radius: 20px;
+    /* Round corners for all messages */
+    background-color: var(--color-primary);
+    /* Default color for online */
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 0;
     transform: translateY(100%);
@@ -2411,36 +2414,76 @@ strong {
     z-index: 9999;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
     /* Optional shadow for better visibility */
+    max-width: 80%;
+    margin-bottom: 10px;
 }
 
+/* Sliding Animation */
 #connection-status.show {
     opacity: 1;
     transform: translateY(0);
     /* Slide up effect */
 }
 
-/* Online Status */
+/* Online Status Styling */
 #connection-status.online {
     background-color: var(--color-success);
     /* Green for online */
+    font-size: var(--font-size-sm);
+    font-weight: bold;
 }
 
-/* Offline Status */
+/* Offline Status Styling */
 #connection-status.offline {
     background-color: var(--color-danger);
     /* Red for offline */
+    font-size: var(--font-size-sm);
+    font-weight: bold;
 }
 
 /* Welcome Message Styling */
 #connection-status.welcome {
     background-color: var(--color-info);
-    /* Blue background for Welcome */
-    font-size: var(--font-size-lg);
+    /* Blue for welcome */
+    font-size: var(--font-size-md);
     font-weight: bold;
     text-transform: uppercase;
 }
 
-/* Fade out after timeout */
-#connection-status.hide {
-    display: none;
+/* When the page is scrolled, ensure the element stays fixed */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Prevent overlapping with footer */
+@media screen and (max-width: 600px) {
+    #connection-status {
+        font-size: var(--font-size-sm);
+        width: 90%;
+        /* Smaller screen: use more width */
+    }
+}
+
+/* Styling for small rounded corner message and ensuring correct stacking */
+#connection-status.welcome {
+    background-color: var(--color-info);
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 25px;
+    /* Make welcome message even rounder */
+}
+
+#connection-status.online,
+#connection-status.offline {
+    border-radius: 25px;
+    /* Round corners for online/offline statuses */
+    font-size: var(--font-size-sm);
+    /* Smaller text for online/offline */
+    text-transform: capitalize;
+}
+
+#connection-status.show {
+    transition: all 0.5s ease;
 }
