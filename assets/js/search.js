@@ -1,20 +1,27 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const suggestionsBox = document.getElementById('search-suggestions');
 
     const siteContent = {
         about: document.getElementById('about'),
-        services: document.getElementById('services'),
-        projects: document.getElementById('projects'),
+        blog: document.getElementById('blog'),
         contact: document.getElementById('contact'),
+        engagement: document.getElementById('engagement'),
         features: document.getElementById('features'),
+        footer: document.getElementById('site-footer'),
+        gallery: document.getElementById('gallery'),
+        how_we_work: document.getElementById('how-we-work'),
+        mission_philosophy: document.getElementById('mission-philosophy'),
+        recent_projects: document.getElementById('recent-projects'),
+        services: document.getElementById('services'),
         technology: document.getElementById('technology'),
         testimonials: document.getElementById('testimonials'),
-        blog: document.getElementById('blog'),
+        why_choose_us: document.getElementById('why-choose-us'),
+        work: document.getElementById('work-together'),
     };
 
-    // Trie node definition
+    // ===== TRIE STRUCTURE =====
+
     class TrieNode {
         constructor() {
             this.children = {};
@@ -22,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Trie class for fast prefix-based search
     class Trie {
         constructor() {
             this.root = new TrieNode();
@@ -31,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         insert(word, section) {
             let node = this.root;
             for (const char of word) {
-                if (!node.children[char]) node.children[char] = new TrieNode();
+                if (!node.children[char]) {
+                    node.children[char] = new TrieNode();
+                }
                 node = node.children[char];
             }
             node.sections.add(section);
@@ -47,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         _collectSections(node) {
-            const results = new Set([...node.sections]);
+            const results = new Set(node.sections);
             for (const child in node.children) {
                 for (const section of this._collectSections(node.children[child])) {
                     results.add(section);
@@ -59,19 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const trie = new Trie();
 
-    // Populate Trie with words from each section
+    // Populate the Trie with words from each section
     for (const [section, element] of Object.entries(siteContent)) {
         if (element && element.textContent) {
             const words = element.textContent.toLowerCase().split(/\W+/);
-            for (const word of words) {
+            words.forEach(word => {
                 if (word.length > 1) {
                     trie.insert(word, section);
                 }
-            }
+            });
         }
     }
 
-    // Debounce function to limit rapid input handling
+    // ===== UTILITIES =====
+
     const debounce = (func, delay = 200) => {
         let timer;
         return (...args) => {
@@ -80,35 +89,45 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // Show suggestions in the suggestion box
-    function showSuggestions(suggestions, query) {
+    const createSuggestionItem = (section, snippet, query) => {
+        const div = document.createElement('div');
+        const highlighted = snippet.replace(
+            new RegExp(`(${query})`, 'i'),
+            '<mark>$1</mark>'
+        );
+
+        div.innerHTML = highlighted + '...';
+        div.className = 'suggestion-item';
+        div.tabIndex = 0;
+        div.setAttribute('role', 'button');
+        div.addEventListener('click', () => {
+            window.location.href = `#${section}`;
+            searchInput.value = '';
+            suggestionsBox.style.display = 'none';
+        });
+
+        return div;
+    };
+
+    const showSuggestions = (suggestions, query) => {
         suggestionsBox.innerHTML = '';
-        if (suggestions.length === 0) {
+        if (!suggestions.length) {
             suggestionsBox.style.display = 'none';
             return;
         }
 
         suggestionsBox.style.display = 'block';
         suggestions.forEach(section => {
-            const content = siteContent[section].textContent.trim().substring(0, 100);
-            const snippet = content.replace(new RegExp(`(${query})`, 'i'), '<mark>$1</mark>');
-
-            const div = document.createElement('div');
-            div.innerHTML = snippet + '...';
-            div.className = 'suggestion-item';
-            div.tabIndex = 0;
-            div.setAttribute('role', 'button');
-            div.addEventListener('click', () => {
-                window.location.href = `#${section}`;
-                searchInput.value = '';
-                suggestionsBox.style.display = 'none';
-            });
-
-            suggestionsBox.appendChild(div);
+            const content = siteContent[section]?.textContent?.trim().substring(0, 100) || '';
+            if (content) {
+                const item = createSuggestionItem(section, content, query);
+                suggestionsBox.appendChild(item);
+            }
         });
-    }
+    };
 
-    // Handle input event with debounced function
+    // ===== EVENTS =====
+
     searchInput.addEventListener('input', debounce(() => {
         const query = searchInput.value.trim().toLowerCase();
         if (query.length > 0) {
@@ -119,11 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 250));
 
-    // Hide suggestions on outside click
     document.addEventListener('click', (e) => {
         if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
             suggestionsBox.style.display = 'none';
         }
     });
 });
-

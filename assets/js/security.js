@@ -1,9 +1,9 @@
 (function () {
-    const SECURITY_VERSION = '2.1.0';
+    const SECURITY_VERSION = '2.2.0';
     const SECURITY_EMAIL = 'ellowdigitals@gmail.com';
     const REPORT_ENDPOINT = `https://formsubmit.co/ajax/${SECURITY_EMAIL}`;
 
-    console.log(`%c[SECURITY] EllowDigitals Shield v${SECURITY_VERSION} loaded.`, 'color: #00BCD4; font-weight: bold');
+    console.log(`%c[SECURITY] EllowDigitals Shield v${SECURITY_VERSION} loaded.`, 'color: #eeff00; font-weight: bold');
 
     // 🔐 DevTools Detection
     let devToolsDetected = false;
@@ -59,17 +59,17 @@
             return;
         }
 
-        // Time-based bot detection
-        const now = Date.now();
-        const firstSeen = formTimestamps.get(form) || now;
-        formTimestamps.set(form, firstSeen);
-        const timeTaken = now - firstSeen;
-        if (timeTaken < 2000) {
-            e.preventDefault();
-            alert('Form filled too quickly — possible bot.');
-            reportThreat('Form Timing Suspicious', { timeTaken });
-            return;
-        }
+        // // Time-based bot detection
+        // const now = Date.now();
+        // const firstSeen = formTimestamps.get(form) || now;
+        // formTimestamps.set(form, firstSeen);
+        // const timeTaken = now - firstSeen;
+        // if (timeTaken < 2000) {
+        //     e.preventDefault();
+        //     alert('Form filled too quickly — possible bot.');
+        //     reportThreat('Form Timing Suspicious', { timeTaken });
+        //     return;
+        // }
 
         const todayKey = `${form.action}:${new Date().toISOString().slice(0, 10)}`;
         formSubmissions[todayKey] = (formSubmissions[todayKey] || 0) + 1;
