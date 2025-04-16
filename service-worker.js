@@ -1,4 +1,7 @@
 const CACHE_NAME = 'ellowdigitals-v2';
+const VERSION = 'v2.0.0';
+const DEBUG = false; // Set to true for verbose logs during development
+
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
@@ -28,84 +31,79 @@ const FILES_TO_CACHE = [
     '/LICENSE',
     '/google7c06ba0fd23ccdce.html',
     '/CNAME',
-    '/assets/success.html'
+    '/assets/success.html',
+    '/offline.html'
 ];
 
-const VERSION = 'v2.0.0';
-
-// Install event - cache all necessary files
+// Install event
 self.addEventListener('install', event => {
-    console.log(`%c[Service Worker v${VERSION}] Installing...`, 'color: #4CAF50; font-weight: bold;');
+    if (DEBUG) console.log(`[SW ${VERSION}] Installing...`);
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(FILES_TO_CACHE);
-            })
-            .then(() => {
-                console.log(`%c[Service Worker v${VERSION}] Files cached successfully!`, 'color: #4CAF50; font-weight: bold;');
-            })
-            .catch(err => {
-                console.error(`%c[Service Worker v${VERSION}] Failed to cache during install:`, 'color: #e74c3c;', err);
-            })
+            .then(cache => cache.addAll(FILES_TO_CACHE))
+            .then(() => DEBUG && console.log(`[SW ${VERSION}] Files cached.`))
+            .catch(err => console.error(`[SW ${VERSION}] Install cache error:`, err))
     );
-    self.skipWaiting(); // Activate worker immediately
+    self.skipWaiting();
 });
 
-// Activate event - clear old caches
+// Activate event
 self.addEventListener('activate', event => {
-    console.log(`%c[Service Worker v${VERSION}] Activating...`, 'color: #3498db; font-weight: bold;');
+    if (DEBUG) console.log(`[SW ${VERSION}] Activating...`);
     event.waitUntil(
         caches.keys().then(keys =>
             Promise.all(
                 keys.map(key => {
                     if (key !== CACHE_NAME) {
-                        console.log(`%c[Service Worker v${VERSION}] Deleting old cache: ${key}`, 'color: #e67e22;');
+                        if (DEBUG) console.log(`[SW ${VERSION}] Deleting old cache: ${key}`);
                         return caches.delete(key);
                     }
                 })
             )
         )
     );
-    self.clients.claim(); // Take control of all clients
+    self.clients.claim();
 });
 
-// Fetch event - serve from cache first, fall back to network
+// Fetch event
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    console.log(`%c[Service Worker v${VERSION}] Serving from cache: ${event.request.url}`, 'color: #8e44ad;');
-                    return response;
+            .then(cachedResponse => {
+                if (cachedResponse) {
+                    if (DEBUG) console.log(`[SW ${VERSION}] Cache hit: ${event.request.url}`);
+                    return cachedResponse;
                 }
-                console.log(`%c[Service Worker v${VERSION}] Fetching from network: ${event.request.url}`, 'color: #2980b9;');
-                return fetch(event.request);
+
+                return fetch(event.request)
+                    .catch(() => {
+                        console.warn(`[SW ${VERSION}] Offline fallback for: ${event.request.url}`);
+                        return caches.match('/offline.html');
+                    });
             })
             .catch(err => {
-                console.warn(`%c[Service Worker v${VERSION}] Fetch failed:`, 'color: #f39c12;', err);
+                console.error(`[SW ${VERSION}] Fetch error:`, err);
+                return caches.match('/offline.html');
             })
     );
 });
 
-// Push event - display notification
+// Push notifications
 self.addEventListener('push', event => {
-    const message = event.data ? event.data.text() : 'New content available!';
+    const message = event.data?.text() || 'New content available!';
     const options = {
         body: message,
         icon: '/assets/favicon/android-chrome-192x192.png',
         badge: '/assets/favicon/android-chrome-512x512.png',
         vibrate: [200, 100, 200],
-        data: {
-            url: '/' // default click action
-        }
+        data: { url: '/' }
     };
-
     event.waitUntil(
         self.registration.showNotification('📢 EllowDigitals', options)
     );
 });
 
-// Optional: Handle notification click
+// Notification click
 self.addEventListener('notificationclick', event => {
     event.notification.close();
     event.waitUntil(
