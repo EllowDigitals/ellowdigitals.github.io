@@ -26,7 +26,7 @@ const FILES_TO_CACHE = [
     '/assets/images/flag.png',
     '/assets/videos/bgvideo0.mp4',
     '/assets/success.html',
-    '/offline.html',
+    '/offline.html',  // Ensure the offline.html is cached
 ];
 
 // Install and cache app shell
@@ -62,31 +62,39 @@ self.addEventListener('activate', (event) => {
     self.clients.claim(); // Take control of all clients immediately
 });
 
-// Fetch strategy: Cache-first with fallback and stale-while-revalidate
+// Fetch strategy: Cache-first with fallback to offline page if offline
 self.addEventListener('fetch', (event) => {
     const { request } = event;
 
     // Skip service worker request itself
     if (request.url.includes('service-worker.js')) return;
 
-    // If it's a static asset, use cache-first strategy
+    // Handle requests for static assets (GET requests)
     if (request.method === 'GET') {
         event.respondWith(
             caches.match(request).then((cachedResponse) => {
                 if (cachedResponse) {
+                    // If we have a cached response, serve it and also update the cache in the background (stale-while-revalidate)
                     if (DEBUG) console.log(`[SW ${VERSION}] Serving from cache: ${request.url}`);
-                    // Stale-while-revalidate: Fetch in the background
-                    event.waitUntil(fetch(request).then((response) => {
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(request, response.clone());
-                        });
-                    }));
+                    event.waitUntil(
+                        fetch(request).then((response) => {
+                            // Only cache the response if it's valid (status code 200)
+                            if (response && response.status === 200) {
+                                caches.open(CACHE_NAME).then((cache) => {
+                                    cache.put(request, response.clone());
+                                });
+                            }
+                        }).catch((err) => {
+                            if (DEBUG) console.error('[SW] Background update failed', err);
+                        })
+                    );
                     return cachedResponse;
                 }
 
+                // If no cached response, try fetching from network, otherwise return offline page
                 return fetch(request).catch(() => {
-                    if (DEBUG) console.warn(`[SW ${VERSION}] Offline fallback for: ${request.url}`);
-                    return caches.match('/offline.html');
+                    if (DEBUG) console.warn(`[SW ${VERSION}] Fetch failed, serving offline.html for: ${request.url}`);
+                    return caches.match('/offline.html'); // Serve offline page on failure
                 });
             })
         );
