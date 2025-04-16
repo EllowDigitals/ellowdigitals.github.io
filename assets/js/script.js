@@ -14,7 +14,7 @@ const debounce = (fn, delay = 300) => {
 // 🚀 DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
     console.groupCollapsed("%c🚀 Ellowdigitals Scripts Loaded", "color:#fff; background:#2ecc71; padding:4px 10px; border-radius:6px;");
-    console.log("%cVersion: v6.0", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
+    console.log("%cVersion: v6.1", "color:#222; background:#f39c12; padding:2px 6px; border-radius:4px;");
     console.log("%cLast Updated: 2025-04-16", "color:#999; font-size:12px;");
     console.groupEnd();
 
@@ -81,6 +81,7 @@ function initEnrollForm() {
         return;
     }
 
+    const allowedDomain = "gmail.com";
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -92,9 +93,9 @@ function initEnrollForm() {
             error = true;
         }
 
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-        if (!emailRegex.test(email.value)) {
-            showError(email, "Please enter a valid Gmail address.");
+        const emailRegex = new RegExp(`^[a-zA-Z0-9._%+-]+@${allowedDomain}$`);
+        if (!emailRegex.test(email.value.trim())) {
+            showError(email, `Only ${allowedDomain} addresses allowed.`);
             error = true;
         }
 
@@ -160,6 +161,7 @@ const updateLoadingText = (percent) => {
 
 const hidePreloader = () => {
     if (preloader) {
+        preloader.setAttribute("aria-hidden", "true");
         preloader.style.transition = "opacity 0.8s ease-out";
         preloader.style.opacity = "0";
 
@@ -203,15 +205,15 @@ function monitorConnectionStatus() {
     const updateStatus = (online) => {
         const type = online ? "online" : "offline";
         const msg = online
-            ? "You are now online. All features are available."
-            : "You are offline. Some features may not work.";
+            ? "✅ You are now online."
+            : "⚠️ You are offline.";
         showStatus(msg, type);
         localStorage.setItem("lastStatus", type);
     };
 
     if (!localStorage.getItem("isFirstVisit")) {
         localStorage.setItem("isFirstVisit", "false");
-        showStatus("Welcome to EllowDigitals!", "welcome");
+        showStatus("🎉 Welcome to EllowDigitals!", "welcome");
     } else {
         updateStatus(navigator.onLine);
     }

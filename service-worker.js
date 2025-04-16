@@ -1,121 +1,156 @@
-const CACHE_NAME = 'ellowdigitals-v2';
-const VERSION = 'v2.0.0';
-const DEBUG = false; // Set to true for verbose logs during development
+const VERSION = 'v3.1.0';
+const CACHE_NAME = `ellowdigitals-${VERSION}`;
+const DEBUG = false;
 
 const FILES_TO_CACHE = [
-    '/',
-    '/index.html',
+    '/', '/index.html',
     '/assets/css/preloader.css',
     '/assets/css/styles.css',
-    '/pwa-init.js',
     '/assets/js/error-handler.js',
     '/assets/js/security.js',
+    '/assets/js/script.js',
+    '/assets/js/search.js',
+    '/assets/favicon/favicon.ico',
     '/assets/favicon/android-chrome-192x192.png',
     '/assets/favicon/android-chrome-512x512.png',
     '/assets/favicon/apple-touch-icon.png',
     '/assets/favicon/favicon-16x16.png',
     '/assets/favicon/favicon-32x32.png',
-    '/assets/favicon/favicon.ico',
     '/assets/favicon/site.webmanifest',
-    '/assets/images/flag.png',
-    '/assets/images/ghatak.webp',
     '/assets/images/logo.webp',
+    '/assets/images/ghatak.webp',
     '/assets/images/project1.webp',
     '/assets/images/project2.webp',
     '/assets/images/project3.webp',
     '/assets/images/project4.webp',
+    '/assets/images/flag.png',
     '/assets/videos/bgvideo0.mp4',
-    '/robots.txt',
-    '/README.md',
-    '/license.txt',
-    '/LICENSE',
-    '/google7c06ba0fd23ccdce.html',
-    '/CNAME',
     '/assets/success.html',
-    '/offline.html'
+    '/offline.html',
 ];
 
-// Install event
-self.addEventListener('install', event => {
-    if (DEBUG) console.log(`[SW ${VERSION}] Installing...`);
+// Install and cache app shell
+self.addEventListener('install', (event) => {
+    if (DEBUG) console.log(`[SW ${VERSION}] Install`);
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(FILES_TO_CACHE))
-            .then(() => DEBUG && console.log(`[SW ${VERSION}] Files cached.`))
-            .catch(err => console.error(`[SW ${VERSION}] Install cache error:`, err))
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(FILES_TO_CACHE).catch((err) => {
+                if (DEBUG) console.error(`[SW ${VERSION}] Cache add error:`, err);
+            });
+        })
     );
-    self.skipWaiting();
+    self.skipWaiting();  // Skip waiting for the new service worker to activate
 });
 
-// Activate event
-self.addEventListener('activate', event => {
-    if (DEBUG) console.log(`[SW ${VERSION}] Activating...`);
+// Activate and clean old caches
+self.addEventListener('activate', (event) => {
+    if (DEBUG) console.log(`[SW ${VERSION}] Activate`);
     event.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(
-                keys.map(key => {
+        caches.keys().then((keys) => {
+            return Promise.all(
+                keys.map((key) => {
                     if (key !== CACHE_NAME) {
                         if (DEBUG) console.log(`[SW ${VERSION}] Deleting old cache: ${key}`);
                         return caches.delete(key);
                     }
                 })
-            )
-        )
+            );
+        }).catch((err) => {
+            if (DEBUG) console.error(`[SW ${VERSION}] Cache deletion error:`, err);
+        })
     );
-    self.clients.claim();
+    self.clients.claim(); // Take control of all clients immediately
 });
 
-// Fetch event
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(cachedResponse => {
+// Fetch strategy: Cache-first with fallback and stale-while-revalidate
+self.addEventListener('fetch', (event) => {
+    const { request } = event;
+
+    // Skip service worker request itself
+    if (request.url.includes('service-worker.js')) return;
+
+    // If it's a static asset, use cache-first strategy
+    if (request.method === 'GET') {
+        event.respondWith(
+            caches.match(request).then((cachedResponse) => {
                 if (cachedResponse) {
-                    if (DEBUG) console.log(`[SW ${VERSION}] Cache hit: ${event.request.url}`);
+                    if (DEBUG) console.log(`[SW ${VERSION}] Serving from cache: ${request.url}`);
+                    // Stale-while-revalidate: Fetch in the background
+                    event.waitUntil(fetch(request).then((response) => {
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(request, response.clone());
+                        });
+                    }));
                     return cachedResponse;
                 }
 
-                return fetch(event.request)
-                    .catch(() => {
-                        console.warn(`[SW ${VERSION}] Offline fallback for: ${event.request.url}`);
-                        return caches.match('/offline.html');
-                    });
+                return fetch(request).catch(() => {
+                    if (DEBUG) console.warn(`[SW ${VERSION}] Offline fallback for: ${request.url}`);
+                    return caches.match('/offline.html');
+                });
             })
-            .catch(err => {
-                console.error(`[SW ${VERSION}] Fetch error:`, err);
-                return caches.match('/offline.html');
-            })
-    );
+        );
+    }
 });
 
-// Push notifications
-self.addEventListener('push', event => {
-    const message = event.data?.text() || 'New content available!';
+// Push notification display
+self.addEventListener('push', (event) => {
+    const data = event.data?.json() || { body: 'You have a new message!' };
     const options = {
-        body: message,
+        body: data.body,
         icon: '/assets/favicon/android-chrome-192x192.png',
         badge: '/assets/favicon/android-chrome-512x512.png',
-        vibrate: [200, 100, 200],
-        data: { url: '/' }
+        data: { url: data.url || '/' },
+        vibrate: [100, 50, 100],
     };
+
     event.waitUntil(
         self.registration.showNotification('📢 EllowDigitals', options)
     );
 });
 
-// Notification click
-self.addEventListener('notificationclick', event => {
+// Handle notification click and focus the window
+self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     event.waitUntil(
-        clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+        clients.matchAll({ type: 'window' }).then((clientList) => {
             for (const client of clientList) {
                 if (client.url === event.notification.data.url && 'focus' in client) {
                     return client.focus();
                 }
             }
-            if (clients.openWindow) {
-                return clients.openWindow(event.notification.data.url);
-            }
+            return clients.openWindow(event.notification.data.url);
         })
     );
 });
+
+// Background sync for failed requests (Optional)
+self.addEventListener('sync', (event) => {
+    if (event.tag === 'retry-failed-requests') {
+        event.waitUntil(
+            // Retry sending failed requests, assuming you have stored them for retry
+            retryFailedRequests()
+        );
+    }
+});
+
+// Retry failed requests (Example function)
+const retryFailedRequests = () => {
+    return caches.open(CACHE_NAME).then((cache) => {
+        return cache.keys().then((keys) => {
+            // Retry fetching or sending failed requests
+            // This can be expanded to handle actual requests stored in cache
+            keys.forEach((key) => {
+                fetch(key)
+                    .then((response) => {
+                        if (response.ok) {
+                            cache.put(key, response);
+                        }
+                    })
+                    .catch((err) => {
+                        if (DEBUG) console.warn('[SW] Failed to retry request:', err);
+                    });
+            });
+        });
+    });
+};
